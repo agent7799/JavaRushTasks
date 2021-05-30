@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="org.eclipse.ant.ui.ant_tasks_page_context.columnWidth0" value="177"/>
+	<item key="org.eclipse.ant.ui.ant_tasks_page_context.columnWidth1" value="123"/>
+	<item key="org.eclipse.ant.ui.ant_tasks_page_context.columnWidth2" value="117"/>
+	<item key="org.eclipse.ant.ui.ant_tasks_page_context.columnWidth3" value="117"/>
+	<item key="org.eclipse.ant.ui.ant_tasks_page_context.sortColumn" value="0"/>
+	<item key="org.eclipse.ant.ui.ant_tasks_page_context.sortDirection" value="1024"/>
+	<item key="org.eclipse.ant.ui.ant_types_page_context.columnWidth0" value="183"/>
+	<item key="org.eclipse.ant.ui.ant_types_page_context.columnWidth1" value="128"/>
+	<item key="org.eclipse.ant.ui.ant_types_page_context.columnWidth2" value="121"/>
+	<item key="org.eclipse.ant.ui.ant_types_page_context.columnWidth3" value="121"/>
+	<item key="org.eclipse.ant.ui.ant_types_page_context.sortColumn" value="0"/>
+	<item key="org.eclipse.ant.ui.ant_types_page_context.sortDirection" value="1024"/>
+	<item key="ant.properties.block.property.columnWidth0" value="168"/>
+	<item key="ant.properties.block.property.columnWidth1" value="224"/>
+	<item key="ant.properties.block.property.columnWidth2" value="168"/>
+	<item key="ant.properties.block.property.sortColumn" value="0"/>
+	<item key="ant.properties.block.property.sortDirection" value="1024"/>
+	<section name="org.eclipse.ant.internal.ui.views.AntView">
+		<item key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;antView/&gt;"/>
+	</section>
+</section>
