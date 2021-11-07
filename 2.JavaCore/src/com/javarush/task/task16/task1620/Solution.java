@@ -41,6 +41,7 @@ public class Solution {
         private String sharedResource;
 
         public Water(String sharedResource) {
+
             this.sharedResource = sharedResource;
         }
 
