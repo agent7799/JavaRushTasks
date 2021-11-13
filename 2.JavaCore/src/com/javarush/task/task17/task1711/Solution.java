@@ -90,10 +90,7 @@ public class Solution {
                         System.out.println(name + sex + birthDate);
                     }
                 }
-            default:
-                synchronized (allPeople) {
 
-                }
         }
     }
 }
