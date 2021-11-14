@@ -25,16 +25,11 @@ public class Solution {
     static DateFormat dateFormatIn = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
     static DateFormat dateFormatOut = new SimpleDateFormat("dd-MMM-yyyy", Locale.ENGLISH);
 
-
     public static void main(String[] args) throws ParseException {
         //start here - начни тут
 
-        if (args == null || args.length < 1) {
-            //System.out.println("Error! Check arguments!");
-            throw new RuntimeException();
-        }
-
-
+        Date birthDate;
+        Person person;
         switch (args[0]) {
             case ("-c"):
                 synchronized (allPeople) {
@@ -42,9 +37,9 @@ public class Solution {
 //                    addPerson(args[i+1], args[i+2], args[i+3]);
 //                    System.out.println(allPeople.get(i));
                         String name = args[i];
-                        Date birthDate = dateFormatIn.parse(args[i + 2]);
+                        birthDate = dateFormatIn.parse(args[i + 2]);
                         String sex = args[i + 1];
-                        Person person = sex.equals("м") ? Person.createMale(name, birthDate) : Person.createFemale(name, birthDate);
+                        person = sex.equals("м") ? Person.createMale(name, birthDate) : Person.createFemale(name, birthDate);
                         allPeople.add(person);
                         System.out.println(allPeople.indexOf(person));
                     }
@@ -54,43 +49,43 @@ public class Solution {
             case ("-u"):
                 synchronized (allPeople) {
                     for (int i = 1; i < args.length; i += 4) {
-//                    updatePerson(args[i+1], args[i+2], args[i+3], args[4]);
-//                    System.out.println(allPeople.get(i));
+
                         int id = Integer.parseInt(args[i]);
                         String name = args[i + 1];
-                        String sex = args[i + 3];
-                        Date birthDate = dateFormatIn.parse(args[i + 3]);
-                        Person currentPerson = allPeople.get(id);
-                        currentPerson.setSex(sex.equals("м") ? Sex.MALE : Sex.FEMALE);
-                        currentPerson.setName(name);
-                        currentPerson.setBirthDate(birthDate);
+                        String sex = args[i + 2];
+                        birthDate = dateFormatIn.parse(args[i + 3]);
+                        person = allPeople.get(id);
+                        person.setSex(sex.equals("м") ? Sex.MALE : Sex.FEMALE);
+                        person.setName(name);
+                        person.setBirthDate(birthDate);
                     }
+                    break;
                 }
             case ("-d"):
                 synchronized (allPeople) {
                     for (int i = 1; i < args.length; i++) {
                         //deletePerson(i);
-                        Person currentPerson = allPeople.get(Integer.parseInt(args[i + 1]));
-                        currentPerson.setBirthDate(null);
-                        currentPerson.setName(null);
-                        currentPerson.setSex(null);
-
+                        //person = allPeople.get(Integer.parseInt(args[i]));
+                        allPeople.get(Integer.parseInt(args[i])).setBirthDate(null);
+                        allPeople.get(Integer.parseInt(args[i])).setName(null);
+                        allPeople.get(Integer.parseInt(args[i])).setSex(null);
                     }
+                    break;
                 }
             case ("-i"):
                 synchronized (allPeople) {
                     for (int i = 1; i < args.length; i++) {
 //                    printPerson(i);
 
-                        int id = Integer.parseInt(args[i + 1]);
-                        Person currentPerson = allPeople.get(id);
-                        String name = currentPerson.getName();
-                        String sex = currentPerson.getSex() == Sex.MALE ? "м" : "ж";
-                        String birthDate = dateFormatOut.format(currentPerson.getBirthDate());
-                        System.out.println(name + sex + birthDate);
+                        int id = Integer.parseInt(args[i]);
+                        person = allPeople.get(id);
+                        String name = person.getName();
+                        String sex = person.getSex() == Sex.MALE ? "м" : "ж";
+                        String bDate = dateFormatOut.format(person.getBirthDate());
+                        System.out.println(name + " " + sex + " " + bDate);
                     }
                 }
-
+            break;
         }
     }
 }
