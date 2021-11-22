@@ -5,12 +5,15 @@ package com.javarush.task.pro.task02.task0202;
 */
 
 public class Solution {
+    static int centimeters = 243;
+
+    public static int calculateMeters(int cm){
+        centimeters = cm;
+        int meters = cm / 100; //напишите тут ваш код
+        return meters;
+    }
 
     public static void main(String[] args) {
-        int centimeters = 243;
-
-        int meters = 0; //напишите тут ваш код
-
-        System.out.println(meters);
+        System.out.println(calculateMeters(centimeters));
     }
 }
