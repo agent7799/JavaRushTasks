@@ -19,9 +19,9 @@ public class Solution {
 
     public static void main(String[] args) {
 
-        int i = 501234567;
-        String s = String.format("%010d", i);
-        System.out.println("+" + 38 + "(" + s.substring(0,3) + ")" + s.substring(3,6) + "-" + s.substring(6,8) + "-" + s.substring(8,10));
+//        int i = 501234567;
+//        String s = String.format("%010d", i);
+//        System.out.println("+" + 38 + "(" + s.substring(0,3) + ")" + s.substring(3,6) + "-" + s.substring(6,8) + "-" + s.substring(8,10));
 
     }
 
