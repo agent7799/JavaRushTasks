@@ -1,12 +1,10 @@
-package com.javarush.task.task19.task1908;
+package com.javarush.task.task19.task1909;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.regex.Pattern;
 
 /* 
-Выделяем числа
+Замена знаков
 */
 
 public class Solution {
@@ -24,15 +22,12 @@ public class Solution {
             BufferedReader fileReader = new BufferedReader(new FileReader(firstFileName));
             BufferedWriter fileWriter = new BufferedWriter(new FileWriter(secondFileName));
 
-            //String regex  = "\\b\\d{1,}\\b";
-
+            ArrayList<String> list = new ArrayList<String>();
+            String str;
             while (fileReader.ready()) {
-                for (String str : fileReader.readLine().split(" ")){
-                    if (str.matches("\\b\\d{1,}\\b")){
-                        fileWriter.write(str + " ");
-                        System.out.println(str);
-                    }
-                }
+                str = fileReader.readLine().replaceAll("\\.", "\\!");
+                System.out.println(str);
+                fileWriter.write(str);
             }
 
             fileReader.close();
@@ -41,6 +36,11 @@ public class Solution {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+
+
+
 
     }
 }
