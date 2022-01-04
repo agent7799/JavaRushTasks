@@ -20,6 +20,7 @@ public class Solution {
             FileInputStream fileInputStream = new FileInputStream(fileName1);
             FileOutputStream fileOutputStream = new FileOutputStream(fileName2);
 
+
             byte[] buffer = new byte[fileInputStream.available()];
             List<Integer> list = new ArrayList<>();
 
