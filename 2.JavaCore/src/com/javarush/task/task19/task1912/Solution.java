@@ -19,6 +19,7 @@ public class Solution {
         testString.printSomething();
 
         String result = outputStream.toString();
+        
 
         System.setOut(consoleStream);
         System.out.println(result.replace("te", "??"));
