@@ -12,10 +12,9 @@ public class Solution {
         //вы можете найти your_file_name.tmp в папке TMP или исправьте outputStream/inputStream в соответствии с путем к вашему реальному файлу
         try {
 
-            File yourFile = File.createTempFile("your_file_name", null);
+            File yourFile = File.createTempFile("c:\\java\\temp.txt", null);
             OutputStream outputStream = new FileOutputStream(yourFile);
             InputStream inputStream = new FileInputStream(yourFile);
-
             ClassWithStatic classWithStatic = new ClassWithStatic();
             classWithStatic.i = 3;
             classWithStatic.j = 4;
@@ -29,6 +28,7 @@ public class Solution {
 
             loadedObject.load(inputStream);
             //here check that the classWithStatic object is equal to the loadedObject object - проверьте тут, что classWithStatic и loadedObject равны
+            System.out.println(classWithStatic.equals(loadedObject));
 
             outputStream.close();
             inputStream.close();
@@ -49,10 +49,20 @@ public class Solution {
 
         public void save(OutputStream outputStream) throws Exception {
             //implement this method - реализуйте этот метод
+            PrintWriter writer = new PrintWriter(outputStream);
+            writer.println(staticString);
+            writer.println(i);
+            writer.println(j);
+            writer.close();
         }
 
         public void load(InputStream inputStream) throws Exception {
             //implement this method - реализуйте этот метод
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            staticString = reader.readLine();
+            i = Integer.parseInt(reader.readLine());
+            j = Integer.parseInt(reader.readLine());
+            reader.close();
         }
 
         @Override
