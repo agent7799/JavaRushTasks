@@ -21,8 +21,6 @@ public class FigureView extends Game {
 
     //напишите тут ваш код
 
-
-
     public void showShip() {
         for (int i = 0; i < SHIP.length; i++) {
             for (int j = 0; j < SHIP[0].length; j++) {
