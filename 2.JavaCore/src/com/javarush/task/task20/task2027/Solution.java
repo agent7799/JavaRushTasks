@@ -10,18 +10,18 @@ import java.util.List;
 public class Solution {
     public static void main(String[] args) {
         int[][] crossword = new int[][]{
-//                {'f', 'd', 'e', 'r', 'l', 'k'},
-//                {'u', 's', 'a', 'm', 'e', 'o'},
-//                {'l', 'n', 'g', 'r', 'o', 'v'},
-//                {'m', 'l', 'p', 'r', 'r', 'h'},
-//                {'p', 'o', 'e', 'e', 'j', 'j'}
-
-                {'f', 'd', 'e', 'e', 'l', 'k'},
+                {'f', 'd', 'e', 'r', 'l', 'k'},
                 {'u', 's', 'a', 'm', 'e', 'o'},
-                {'l', 'a', 'g', 'o', 'o', 'v'},
-                {'m', 'm', 'p', 'h', 'r', 'h'},
-//                {'m', 'e', 'm', 'a', 's', 'h'},
-                {'h', 'o', 'm', 'e', 'p', 'j'}
+                {'l', 'n', 'g', 'r', 'o', 'v'},
+                {'m', 'l', 'p', 'r', 'r', 'h'},
+                {'p', 'o', 'e', 'e', 'j', 'j'}
+
+//                {'f', 'd', 'e', 'e', 'l', 'k'},
+//                {'u', 's', 'a', 'm', 'e', 'o'},
+//                {'l', 'a', 'a', 'o', 'o', 'v'},
+//                {'m', 'm', 'p', 'm', 'r', 'h'},
+//                {'m', 'e', 'm', 'a', 'e', 'h'},
+//                {'h', 'o', 'm', 'e', 'p', 'j'}
         };
         detectAllWords(crossword, "home", "same");
         /*
@@ -36,102 +36,180 @@ same - (1, 1) - (4, 1)
         StringBuilder stringBuilder = new StringBuilder();
         List<Word> wordList= new ArrayList<>();
 
+        int hor = crossword[0].length;
+        int ver = crossword.length;
+        System.out.println("rows yMax crossword.length " + ver);
+        System.out.println("columns xMax crossword[0].length " + hor);
+
         for (int w = 0; w < words.length; w++) {
 
-            System.out.println("Looking for " + words[w]);
-            System.out.println("rows y crossword.length " + crossword.length);
-            System.out.println("columns x crossword[0].length " + crossword[0].length);
+            //System.out.println("Looking for " + words[w]);
 
-
-//           //строки - rows
-//            for (int y = 0; y < crossword.length; y++) {
-//                int columns = crossword[y].length;
-//                for (int x = 0; x < columns; x++) {
-//                    stringBuilder = stringBuilder.append((char) crossword[y][x]);
-//                }
-//                System.out.println(y + " row: " + stringBuilder);
-//                //поиск в строке прямой
-//                if (stringBuilder.toString().contains(words[w])) {
-//                    Word tempWord = new Word(words[w]);
-//                    tempWord.setStartPoint(stringBuilder.indexOf(words[w]), y);
-//                    tempWord.setEndPoint(stringBuilder.indexOf(words[w]) + words[w].length()-1, y);
-//                    wordList.add(tempWord);
-//                    System.out.println(tempWord);
-//                    tempWord = null;
-//                }
-//                //поиск в строке обратный
-//                    if (stringBuilder.reverse().toString().contains(words[w])){
-//                        Word tempWord = new Word(words[w]);
-//                        tempWord.setStartPoint( columns -1  - stringBuilder.indexOf(words[w]), y);
-//                        tempWord.setEndPoint( columns -1  - stringBuilder.indexOf(words[w]) - (words[w].length()-1), y);
-//                        wordList.add(tempWord);
-//                        System.out.println(tempWord);
-//                        tempWord = null;
-//                    }
-//                stringBuilder.setLength(0);
-//            }
+           //строки - rows
+            for (int y = 0; y < crossword.length; y++) {
+                int columns = crossword[y].length;
+                for (int x = 0; x < columns; x++) {
+                    stringBuilder = stringBuilder.append((char) crossword[y][x]);
+                }
+                //System.out.println(y + " row: " + stringBuilder);
+                //поиск в строке прямой
+                if (stringBuilder.toString().contains(words[w])) {
+                    Word tempWord = new Word(words[w]);
+                    tempWord.setStartPoint(stringBuilder.indexOf(words[w]), y);
+                    tempWord.setEndPoint(tempWord.startX + words[w].length()-1, y);
+                    wordList.add(tempWord);
+                    //System.out.println(tempWord);
+                    tempWord = null;
+                }
+                //поиск в строке обратный
+                    if (stringBuilder.reverse().toString().contains(words[w])){
+                        Word tempWord = new Word(words[w]);
+                        tempWord.setStartPoint( columns -1  - stringBuilder.indexOf(words[w]), y);
+                        tempWord.setEndPoint( tempWord.startX - (words[w].length()-1), y);
+                        wordList.add(tempWord);
+                        //System.out.println(tempWord);
+                        tempWord = null;
+                    }
+                stringBuilder.setLength(0);
+            }
 
             //столбцы - columns
-//            for (int y = 0; y < crossword[0].length; y++) {
-//                int rows = crossword.length;
-//                for (int x = 0; x < crossword.length; x++) {
-//                    stringBuilder = stringBuilder.append((char) crossword[x][y]);
+            for (int y = 0; y < crossword[0].length; y++) {
+                int rows = crossword.length;
+                for (int x = 0; x < crossword.length; x++) {
+                    stringBuilder = stringBuilder.append((char) crossword[x][y]);
+                }
+                //System.out.println(y + " column: " + stringBuilder);
+                //поиск в столбце прямой
+                if (stringBuilder.toString().contains(words[w])) {
+                    Word tempWord = new Word(words[w]);
+                    tempWord.setStartPoint(y, stringBuilder.indexOf(words[w]));
+                    tempWord.setEndPoint(y, stringBuilder.indexOf(words[w]) + (words[w].length()-1));
+                    wordList.add(tempWord);
+                    //System.out.println(tempWord);
+                    tempWord = null;
+                }
+                //поиск в столбце обратный
+                    if (stringBuilder.reverse().toString().contains(words[w])){
+                        Word tempWord = new Word(words[w]);
+                        tempWord.setStartPoint( y, rows - 1 - stringBuilder.indexOf(words[w]));
+                        tempWord.setEndPoint( y, rows - 1 - stringBuilder.indexOf(words[w])-  (words[w].length()-1));
+                        wordList.add(tempWord);
+                        //System.out.println(tempWord);
+                        tempWord = null;
+                    }
+                stringBuilder.setLength(0);
+            }
+
+//            //диагонали
+//            for (int y = ver;  y > 0; y--) {
+//
+//                for (int x = 0; x < hor; x++) {
+//                    int i = x;
+//                    int j = y;
+//
+//                    if ((y + i) < hor &&  (y + i) >= 0 && (x - j) < ver && (x - j) >= 0){
+//                        System.out.print("x: " + (x) + ", y: " + (y + i) + "   ");
+//                        stringBuilder = stringBuilder.append((char) crossword[x][y + i]);
+//                        System.out.println((char) crossword[x][y + i ] + " (" + (y + i) + ", " + (x) + ")");
+//                        j++;
+//                    } else {
+//                        continue;
+//                    }
+//                    i++;
 //                }
-//                System.out.println(y + " column: " + stringBuilder);
-//                //поиск в столбце прямой
+//                //диагональ прямая
+//                System.out.println(stringBuilder);
 //                if (stringBuilder.toString().contains(words[w])) {
 //                    Word tempWord = new Word(words[w]);
-//                    tempWord.setStartPoint(y, stringBuilder.indexOf(words[w]));
-//                    tempWord.setEndPoint(y, stringBuilder.indexOf(words[w]) + (words[w].length()-1));
+//                    tempWord.setStartPoint(y + stringBuilder.indexOf(words[w]), stringBuilder.indexOf(words[w]));
+//                    tempWord.setEndPoint(tempWord.startX + (words[w].length()-1), tempWord.startY + (words[w].length()-1));
 //                    wordList.add(tempWord);
 //                    System.out.println(tempWord);
 //                    tempWord = null;
 //                }
-//                //поиск в столбце обратный
-//                    if (stringBuilder.reverse().toString().contains(words[w])){
-//                        Word tempWord = new Word(words[w]);
-//                        tempWord.setStartPoint( y, rows - 1 - stringBuilder.indexOf(words[w]));
-//                        tempWord.setEndPoint( y, rows - 1 - stringBuilder.indexOf(words[w])-  (words[w].length()-1));
-//                        wordList.add(tempWord);
-//                        System.out.println(tempWord);
-//                        tempWord = null;
-//                    }
-//                stringBuilder.setLength(0);
-//            }
-
-            //диагонали
-            int yMax = crossword.length;
-            System.out.println(yMax);
-            int xMax = crossword[0].length;
-            System.out.println(xMax);
+//                //диагональ обратная
+//                System.out.println(stringBuilder);
+//                if (stringBuilder.reverse().toString().contains(words[w])) {
+//                    Word tempWord = new Word(words[w]);
+//                    tempWord.setEndPoint(y + stringBuilder.indexOf(words[w]), stringBuilder.indexOf(words[w]));
+//                    tempWord.setStartPoint(tempWord.endX + (words[w].length()-1), tempWord.endY + (words[w].length()-1));
+//                    wordList.add(tempWord);
+//                   // System.out.println(tempWord);
+//                    tempWord = null;
+//                }
 
 
-            for (int y = 0;  y < yMax; y++) {
-                int i = 0;
-                int j = 0;
-                for (int x = 0; x < xMax; x++) {
-                    //System.out.println("x: " + (x) + ", y: " + (y));
-                    if ((x + i) < xMax && (y + i) < yMax ){
-                        //stringBuilder = stringBuilder.append((char) crossword[y+i][x+i]);
-                        System.out.println((char) crossword[y + i][x + i] + " (" + (y + i) + ", " + (x + i) + ")");
-
-                    } else {
-                        continue;
-                    }
-                    i++;
-                    j++;
-                }
-
-                System.out.println(stringBuilder);
 
 //                if (stringBuilder.toString().contains(words[w]) || stringBuilder.reverse().toString().contains(words[w])) {
 //
 //                }
-                stringBuilder.setLength(0);
+//по диагонали вправо
+                for (int i = 0; i < ver; i++) {
+                    for (int j = 0; j < hor; j++) {
+                        int iTemp = i;
+                        int jTemp = j;
+                        StringBuilder sb = new StringBuilder();
+                        while (iTemp < ver && jTemp < hor) {
+                            sb.append((char) crossword[iTemp][jTemp]);
+                            iTemp++;
+                            jTemp++;
+                        }
+                        String horLine = sb.toString();
+                        if (horLine.contains(words[w])) {
+                            Word word = new Word(words[w]);
+                            word.setStartPoint(j + horLine.indexOf(words[w]), i + horLine.indexOf(words[w]));
+                            word.setEndPoint(j + horLine.indexOf(words[w]) + words[w].length() - 1, i + horLine.indexOf(words[w]) + words[w].length() - 1);
 
+                            wordList.add(word);
+                            continue ;
+                        }
+                        String horReverse = sb.reverse().toString();
+                        if (horReverse.contains(words[w])) {
+                            Word word = new Word(words[w]);
+                            word.setStartPoint(jTemp - 1 - horReverse.indexOf(words[w]), iTemp - 1 - horReverse.indexOf(words[w]));
+                            word.setEndPoint(jTemp - horReverse.indexOf(words[w]) - words[w].length(), iTemp - horReverse.indexOf(words[w]) - words[w].length());
+
+                            wordList.add(word);
+                            continue ;
+                        }
+                    }
+                }
+
+                //по диагонали влево
+                for (int i = 0; i < ver; i++) {
+                    for (int j = hor - 1; j >= 0; j--) {
+                        int iTemp = i;
+                        int jTemp = j;
+                        StringBuilder sb = new StringBuilder();
+                        while (iTemp < ver && jTemp >= 0) {
+                            sb.append((char) crossword[iTemp][jTemp]);
+                            iTemp++;
+                            jTemp--;
+                        }
+
+                        String horLine = sb.toString();
+                        if (horLine.contains(words[w])) {
+                            Word word = new Word(words[w]);
+                            word.setStartPoint(j - horLine.indexOf(words[w]), i + horLine.indexOf(words[w]));
+                            word.setEndPoint(j - horLine.indexOf(words[w]) - words[w].length() + 1, i + horLine.indexOf(words[w]) + words[w].length() - 1);
+
+                            wordList.add(word);
+                            continue ;
+                        }
+                        String horReverse = sb.reverse().toString();
+                        if (horReverse.contains(words[w])) {
+                            Word word = new Word(words[w]);
+                            word.setStartPoint(jTemp + 1 + horReverse.indexOf(words[w]), iTemp - 1 - horReverse.indexOf(words[w]));
+                            word.setEndPoint(jTemp + horReverse.indexOf(words[w]) + words[w].length(), iTemp - horReverse.indexOf(words[w]) - words[w].length());
+                            wordList.add(word);
+                            continue ;
+                        }
+                    }
+                }
+
+                stringBuilder.setLength(0);
             }
-            //
-        }
 
         //System.out.println(wordList);
         return wordList;
