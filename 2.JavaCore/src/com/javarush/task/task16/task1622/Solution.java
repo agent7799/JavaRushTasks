@@ -9,9 +9,9 @@ public class Solution {
 
     public static void main(String[] args) throws InterruptedException {
         for (int i = 0; i < COUNT; i++) {
-            new SleepingThread();
+            new SleepingThread().join();
             //напишите тут ваш код
-            Thread.currentThread().join();
+
         }
     }
 
@@ -22,23 +22,20 @@ public class Solution {
         public SleepingThread() throws InterruptedException {
             super(String.valueOf(++threadCount));
             start();
-
         }
 
         public void run() {
             while (true) {
                 System.out.println(this);
-                if (--countdownIndex == 0){
-                    return;
-                }
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(10);
+                    if (--countdownIndex == 0) {
+                        return;
+                    }
                 } catch (InterruptedException e) {
                     System.out.println("Нить прервана");
                 }
-
             }
-
         }
 
         public String toString() {
