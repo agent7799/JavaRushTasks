@@ -15,9 +15,23 @@ public class Solution {
     }
 
     public static byte[] getNetAddress(byte[] ip, byte[] mask) {
-        return new byte[4];
+        byte[] result = new byte[ip.length];
+        for (int i = 0; i < ip.length; i++) {
+            result[i] =(byte) (ip[i] & mask[i]);
+        }
+        return result;
     }
 
     public static void print(byte[] bytes) {
+        for (int i = 0; i < bytes.length; i++) {
+            //String temp = String.format("%8s", (Integer.toBinaryString(bytes[i]&0xFF)).replace(' ', '0'));
+            //System.out.print(temp + " ");
+
+            //System.out.print((bytes[i] & 0xFF)+ " ");
+            String temp = String.format("%8s", Integer.toBinaryString((bytes[i] & 0xFF))).replace(' ', '0');
+
+            System.out.print (temp+ " ");
+        }
+        System.out.println();
     }
 }
