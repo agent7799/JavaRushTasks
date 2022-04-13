@@ -1,6 +1,7 @@
 package com.javarush.task.task21.task2113;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -25,7 +26,7 @@ public class Hippodrome {
             move();
             print();
             try {
-                Thread.sleep(200);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -50,6 +51,21 @@ public class Hippodrome {
         }
     }
 
+    public Horse getWinner() {
+        Horse winner = null;
+        int maxDistance = 0;
+        for (Horse horse : horses) {
+            if (maxDistance < (int) horse.getDistance()) {
+                maxDistance = (int) horse.getDistance();
+                winner = horse;
+            }
+        }
+        return winner;
+    }
+
+    public void printWinner(){
+        System.out.println("Winner is " + getWinner().getName() + "!");
+    }
 
 
     public static void main(String[] args) {
@@ -61,5 +77,6 @@ public class Hippodrome {
         horses.add(new Horse("Number", 3, 0));
 
         game.run();
+        game.printWinner();
     }
 }
