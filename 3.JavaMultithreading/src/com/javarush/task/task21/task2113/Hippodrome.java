@@ -28,4 +28,27 @@ public class Hippodrome {
         horses.add(new Horse("Strelka", 3, 0));
         horses.add(new Horse("Venera", 3, 0));
     }
+
+    void run(){
+        for (int i = 0; i < 100; i++) {
+            move();
+            print();
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    void move(){
+        for (int i = 0; i < horses.size(); i++) {
+            horses.get(i).move();
+            
+        }
+    }
+
+    void print(){
+
+    }
 }
