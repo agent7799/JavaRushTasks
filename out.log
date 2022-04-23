@@ -35608,3 +35608,48 @@ com.homework.plugin.analytics.PluginWarningException: warning
 2022-04-21 15:16:59 INFO  ApacheHttpClient.getFilteredTasks(336) - responseCode = 200
 2022-04-21 15:17:00 INFO  ApacheHttpClient.getTaskTemplateInfo(353) - responseCode = 200
 2022-04-21 15:17:00 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-04-21 17:41:22 INFO  ApacheHttpClient.getWebResourceAsStream(502) - responseCode = 200
+2022-04-21 17:41:22 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-04-21 17:41:23 INFO  ApacheHttpClient.completed(32) - responseCode = 200
+2022-04-21 17:45:25 INFO  ApacheHttpClient.getWebResourceAsStream(502) - responseCode = 200
+2022-04-21 17:45:25 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-04-21 17:45:26 INFO  ApacheHttpClient.completed(32) - responseCode = 200
+2022-04-21 17:46:14 INFO  ApacheHttpClient.getWebResourceAsStream(502) - responseCode = 200
+2022-04-21 18:02:44 INFO  ApacheHttpClient.getWebResourceAsStream(502) - responseCode = 200
+2022-04-21 18:02:45 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-04-21 18:02:46 INFO  ApacheHttpClient.completed(32) - responseCode = 200
+2022-04-21 18:02:46 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-04-21 18:06:35 INFO  ApacheHttpClient.getWebResourceAsStream(502) - responseCode = 200
+2022-04-21 18:06:35 INFO  ApacheHttpClient.getFilteredTasks(336) - responseCode = 200
+2022-04-21 18:06:38 INFO  ApacheHttpClient.getTaskTemplateInfo(353) - responseCode = 200
+2022-04-22 00:15:42 INFO  ProjectStartupHandler.projectClosing(155) - ---------- Project closed ----------
+
+2022-04-22 00:15:43 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-04-22 00:15:43 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-04-22 00:15:43 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-04-22 00:15:43 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-04-22 00:15:43 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-04-22 00:15:44 INFO  PluginProjectService.dispose(41) - PluginProjectService for disposed.
+2022-04-23 14:52:24 INFO  ProjectStartupHandler.runActivity(74) - ---------- Project opened ----------
+2022-04-23 14:52:24 INFO  ProjectStartupHandler.runActivity(75) - ---------- Version 3.56 ----------
+
+2022-04-23 14:52:24 INFO  ApacheHttpClient.isSessionAppropriateWithSecretKey(602) - Waiting for server response.
+2022-04-23 14:52:24 INFO  ApacheHttpClient.isSessionAppropriateWithSecretKey(602) - Waiting for server response.
+2022-04-23 14:52:24 INFO  ApacheHttpClient.isSessionAppropriateWithSecretKey(602) - Waiting for server response.
+2022-04-23 14:52:25 INFO  ApacheHttpClient.refreshUserInfo(305) - responseCode = 200
+2022-04-23 14:52:25 INFO  ApacheHttpClient.refreshUserInfo(311) - User information received.
+2022-04-23 14:52:25 INFO  ApacheHttpClient.startGA(36) - GAService started.
+2022-04-23 15:00:42 INFO  ApacheHttpClient.getWebResourceAsStream(502) - responseCode = 200
+2022-04-23 15:00:42 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-04-23 15:00:44 INFO  ApacheHttpClient.completed(32) - responseCode = 200
+2022-04-23 15:00:44 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-04-23 15:00:46 INFO  ApacheHttpClient.getWebResourceAsStream(502) - responseCode = 200
+2022-04-23 15:00:46 INFO  ApacheHttpClient.getFilteredTasks(336) - responseCode = 200
+2022-04-23 15:00:48 INFO  ApacheHttpClient.getTaskTemplateInfo(353) - responseCode = 200
+2022-04-23 15:00:48 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-04-23 15:34:16 INFO  ApacheHttpClient.getWebResourceAsStream(502) - responseCode = 200
+2022-04-23 15:34:16 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-04-23 15:43:56 INFO  ApacheHttpClient.getWebResourceAsStream(502) - responseCode = 200
+2022-04-23 15:43:57 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-04-23 15:43:58 INFO  ApacheHttpClient.completed(32) - responseCode = 200
+2022-04-23 15:43:58 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
