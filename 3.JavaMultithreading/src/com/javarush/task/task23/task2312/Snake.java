@@ -15,7 +15,7 @@ public class Snake {
     private ArrayList<SnakeSection> sections;
 
     public Snake(int x, int y) {
-        sections = new ArrayList<SnakeSection>();
+        sections = new ArrayList<>();
         sections.add(new SnakeSection(x, y));
         isAlive = true;
     }
@@ -65,12 +65,12 @@ public class Snake {
      * Метод перемещает змею в соседнюю клетку.
      * Координаты клетки заданы относительно текущей головы с помощью переменных (dx, dy).
      */
-    private void move(int dx, int dy) {
-        // Создаем новую голову - новый "кусочек змеи".
+    void move(int dx, int dy) {
+        //Создаем новую голову - новый "кусочек змеи".
         SnakeSection head = sections.get(0);
         head = new SnakeSection(head.getX() + dx, head.getY() + dy);
 
-        // Проверяем - не вылезла ли голова за границу комнаты
+        //Проверяем - не вылезла ли голова за границу комнаты
         checkBorders(head);
         if (!isAlive) return;
 
