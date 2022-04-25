@@ -1,4 +1,4 @@
-package com.javarush.task.task23.task2311;
+package com.javarush.task.task23.task2310.task2311;
 
 /* 
 Повторяем threads
