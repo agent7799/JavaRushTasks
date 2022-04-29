@@ -14,8 +14,6 @@ Requirements:
 4. Метод getTwoSolutions должен возвращать массив типа Solution заполненный согласно заданию.
 */
 
-import com.sun.org.apache.bcel.internal.classfile.InnerClasses;
-
 public class Solution {
     public InnerClass[] innerClasses = new InnerClass[2];
 
