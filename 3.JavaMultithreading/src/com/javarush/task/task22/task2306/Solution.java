@@ -1,4 +1,4 @@
-package com.javarush.task.task23.task2306;
+package com.javarush.task.task22.task2306;
 
 /* 
 Inner 2
