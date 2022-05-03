@@ -5,6 +5,9 @@ import java.util.List;
 
 /* 
 Рефакторинг, анонимные классы
+Сделайте так, чтобы метод getIterator возвращал анонимный класс.
+Перенесите логику LocalIterator в анонимный класс.
+Меняйте только тело метода getIterator.
 */
 
 public class Solution {
