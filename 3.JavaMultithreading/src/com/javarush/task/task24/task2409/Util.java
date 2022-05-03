@@ -17,6 +17,75 @@ public class Util {
     public static List<Jeans> getAllJeans() {
 
         //add your code here
+        abstract class AbstractJeans implements Jeans {
+            int id;
+            int length;
+            int size;
+            double price;
+
+            public AbstractJeans(int id, int length, int size, double price) {
+                this.id = id;
+                this.length = length;
+                this.size = size;
+                this.price = price;
+            }
+
+            public AbstractJeans() {
+            }
+
+            @Override
+            public abstract String getTM();
+
+            @Override
+            public int getId() {
+                return id;
+            }
+
+            @Override
+            public double getPrice() {
+                return price;
+            }
+
+            @Override
+            public int getLength() {
+                return length;
+            }
+
+            @Override
+            public int getSize() {
+                return size;
+            }
+
+            @Override
+            public String toString() {
+                return this.getClass().getSimpleName() + "{" +"id=" +  getId()+ ", length=" + getLength() + ", size=" + getSize() + ", price=" + getPrice() + "}";
+            }
+        }
+
+        class Levis extends AbstractJeans{
+            String company;
+            public Levis(int id, int length, int size, double price) {
+                super(id, length, size, price);
+            }
+
+            @Override
+            public String getTM() {
+                return company;
+            }
+        }
+
+        class Denim extends AbstractJeans{
+            String company;
+            public Denim(int id, int length, int size, double price) {
+                super(id, length, size, price);
+            }
+
+            @Override
+            public String getTM() {
+                return company;
+            }
+
+        }
 
         List<Jeans> allJeans = new LinkedList<>();
 
@@ -33,7 +102,7 @@ public class Util {
             } else if (Company.Denim == company) {
                 jeans = new Denim(id, length, size, price);
             } else {
-                jeans = new AbstractJeans(id, length, size, price) {
+                jeans = new AbstractJeans() {
                     public String getTM() {
                         return company.fullName;
                     }
