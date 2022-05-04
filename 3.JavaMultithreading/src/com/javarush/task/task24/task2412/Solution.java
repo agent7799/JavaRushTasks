@@ -8,6 +8,10 @@ import java.util.*;
 
 /* 
 Знания - сила!
+1. В методе sort написать компаратор для Stock:
+1.1. Первичная сортировка по name в алфавитном порядке
+1.2. Вторичная сортировка по дате без учета часов, минут, секунд (сверху самые новые),
+потом по прибыли от положительных к отрицательным
 */
 
 public class Solution {
@@ -42,11 +46,36 @@ public class Solution {
     }
 
     public static void sort(List<Stock> list) {
-        list.sort(new Comparator<Stock>() {
+
+        Comparator comparatorByName = new Comparator<Stock>() {
             public int compare(Stock stock1, Stock stock2) {
-                return stock1.toString().compareTo(stock2.toString());
+                String s1 = stock1.get("name").toString();
+                String s2 = stock2.get("name").toString();
+                return s1.compareTo(s2);
             }
-        });
+            };
+
+        Comparator comparatorByDate = new Comparator<Stock>() {
+            public int compare(Stock stock1, Stock stock2) {
+                Date s1 = (Date) stock1.get("date");
+                Date s2 = (Date) stock2.get("date");
+                return s2.compareTo(s1);
+            }
+        };
+
+        Comparator comparatorByProfit = new Comparator<Stock>() {
+            public int compare(Stock stock1, Stock stock2) {
+                if (stock1.get("open") == null || stock2.get("open") == null){
+                    return 0;
+                }else{
+                    Double d1 = (Double) stock1.get("open") - (Double) stock1.get("last");
+                    Double d2 = (Double) stock2.get("open") - (Double) stock2.get("last");
+                    return d1.compareTo(d2);
+                }
+            }
+        };
+
+        list.sort(comparatorByName.thenComparing(comparatorByDate).thenComparing(comparatorByProfit));
     }
 
     public static class Stock extends HashMap<String, Object> {
