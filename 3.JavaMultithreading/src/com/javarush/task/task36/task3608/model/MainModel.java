@@ -45,4 +45,10 @@ public class MainModel implements Model {
        return userService.filterOnlyActiveUsers(getModelData().getUsers());
     }
 
+    public void changeUserData(String name, long id, int level){
+        userService.createOrUpdateUser(name, id, level);
+        modelData.setUsers(getAllUsers());
+    }
+
+
 }
