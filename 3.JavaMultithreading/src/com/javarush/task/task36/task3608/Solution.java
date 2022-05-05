@@ -3,6 +3,7 @@ package com.javarush.task.task36.task3608;
 import com.javarush.task.task36.task3608.controller.Controller;
 import com.javarush.task.task36.task3608.model.MainModel;
 import com.javarush.task.task36.task3608.model.Model;
+import com.javarush.task.task36.task3608.view.EditUserView;
 import com.javarush.task.task36.task3608.view.UsersView;
 
 public class Solution {
@@ -15,7 +16,13 @@ public class Solution {
         controller.setModel(model);
         controller.setUsersView(usersView);
 
+
         usersView.fireEventShowAllUsers();
+        //В классе Solution перед методом fireEventOpenUserEditForm(126L), надо создать новый
+        // объект EditUserView, затем передать его контроллеру.
+        EditUserView editUserView = new EditUserView();
+        controller.setEditUserView(editUserView);
+        usersView.fireEventOpenUserEditForm(126L);
         usersView.fireEventShowDeletedUsers();
     }
 }
