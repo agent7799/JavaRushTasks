@@ -15,7 +15,7 @@ public class TaskManipulator implements Runnable, CustomThreadManipulator {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
                     /** если нить уже закончила работу, то вызов Thread.sleep(100) выбросит
-                        сключение, поэтому break
+                        исключение, поэтому break
                         break;
                     */
                     break;
