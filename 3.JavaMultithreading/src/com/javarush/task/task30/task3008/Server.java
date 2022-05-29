@@ -10,26 +10,34 @@ public class Server {
 
     private static Map<String, Connection> connectionMap = new ConcurrentHashMap<>();
 
-    private static class Handler extends  Thread{
+    private static class Handler extends Thread {
         private Socket socket;
 
-        public Handler(Socket socket){
+        public Handler(Socket socket) {
             this.socket = socket;
         }
 
-        private String serverHandshake(Connection connection) throws IOException, ClassNotFoundException{
-            while (true){
+        private String serverHandshake(Connection connection) throws IOException, ClassNotFoundException {
+            while (true) {
                 connection.send(new Message(MessageType.NAME_REQUEST));
-                Message response =  connection.receive();
-                String name = response.getData();
-                if(response.getType() == MessageType.USER_NAME){
-                    if (!name.equals("")){
-                        if(!connectionMap.containsKey(name)){
-                            connectionMap.put(name, connection);
+                Message response = connection.receive();
+                String userName = response.getData();
+                if (response.getType() == MessageType.USER_NAME) {
+                    if (!userName.equals("")) {
+                        if (!connectionMap.containsKey(userName)) {
+                            connectionMap.put(userName, connection);
                             connection.send(new Message(MessageType.NAME_ACCEPTED));
-                            return name;
+                            return userName;
                         }
                     }
+                }
+            }
+        }
+
+        private void notifyUsers(Connection connection, String userName) throws IOException {
+            for (Map.Entry<String, Connection> entry : connectionMap.entrySet()) {
+                if (entry.getKey() != userName){
+                    connection.send(new Message(MessageType.USER_ADDED, entry.getKey()));
                 }
             }
         }
@@ -42,14 +50,14 @@ public class Server {
         try {
             serverSocket = new ServerSocket(port);
             System.out.println("Server Started!");
-            while (true){
-                    Socket socket = serverSocket.accept();
-                    Handler handler = new Handler(socket);
-                    handler.start();
+            while (true) {
+                Socket socket = serverSocket.accept();
+                Handler handler = new Handler(socket);
+                handler.start();
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             if (serverSocket != null) {
                 try {
                     serverSocket.close();
@@ -60,7 +68,7 @@ public class Server {
         }
     }
 
-    public static void sendBroadcastMessage(Message message){
+    public static void sendBroadcastMessage(Message message) {
         for (Map.Entry<String, Connection> connection : connectionMap.entrySet()) {
             try {
                 connection.getValue().send(message);
