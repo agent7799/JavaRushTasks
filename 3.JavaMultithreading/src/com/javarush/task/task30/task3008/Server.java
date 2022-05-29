@@ -42,6 +42,20 @@ public class Server {
             }
         }
 
+        private void serverMainLoop(Connection connection, String userName) throws IOException,ClassNotFoundException{
+            Message message;
+            while (true){
+                message = connection.receive();
+                if(message.getType() == (MessageType.TEXT)){
+                    String messageToAll = userName + ": " + message.getData();
+                    sendBroadcastMessage(new Message(MessageType.TEXT, messageToAll));
+                }else {
+                    ConsoleHelper.writeMessage("ERROR! Message is not text!");
+                }
+            }
+
+        }
+
     }
 
     public static void main(String[] args) {
@@ -69,11 +83,11 @@ public class Server {
     }
 
     public static void sendBroadcastMessage(Message message) {
-        for (Map.Entry<String, Connection> connection : connectionMap.entrySet()) {
+        for (Map.Entry<String, Connection> connections : connectionMap.entrySet()) {
             try {
-                connection.getValue().send(message);
+                connections.getValue().send(message);
             } catch (IOException e) {
-                System.out.println("Unable to send message to " + connection.getKey());
+                System.out.println("Unable to send message to " + connections.getKey());
             }
         }
     }
