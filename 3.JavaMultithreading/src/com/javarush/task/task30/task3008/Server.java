@@ -36,25 +36,43 @@ public class Server {
 
         private void notifyUsers(Connection connection, String userName) throws IOException {
             for (Map.Entry<String, Connection> entry : connectionMap.entrySet()) {
-                if (entry.getKey() != userName){
+                if (entry.getKey().equals(userName)) {
                     connection.send(new Message(MessageType.USER_ADDED, entry.getKey()));
                 }
             }
         }
 
-        private void serverMainLoop(Connection connection, String userName) throws IOException,ClassNotFoundException{
+        private void serverMainLoop(Connection connection, String userName) throws IOException, ClassNotFoundException {
             Message message;
-            while (true){
+            while (true) {
                 message = connection.receive();
-                if(message.getType() == (MessageType.TEXT)){
+                if (message.getType() == (MessageType.TEXT)) {
                     String messageToAll = userName + ": " + message.getData();
                     sendBroadcastMessage(new Message(MessageType.TEXT, messageToAll));
-                }else {
+                } else {
                     ConsoleHelper.writeMessage("ERROR! Message is not text!");
                 }
             }
+        }
+
+        public void run() {
+            ConsoleHelper.writeMessage("New connection established with " + String.valueOf(socket.getRemoteSocketAddress()));
+            String currentUserName = null;
+            try (Connection connection = new Connection(socket)) {
+                currentUserName = serverHandshake(connection);
+                sendBroadcastMessage(new Message(MessageType.USER_ADDED, currentUserName));
+                notifyUsers(connection, currentUserName);
+                serverMainLoop(connection, currentUserName);
+                sendBroadcastMessage(new Message(MessageType.USER_REMOVED, currentUserName));
+                connectionMap.remove(currentUserName);
+            } catch (IOException | ClassNotFoundException e) {
+                ConsoleHelper.writeMessage("Remote server data exchange error!");
+            } finally {
+                ConsoleHelper.writeMessage("Connection closed");
+            }
 
         }
+
 
     }
 
