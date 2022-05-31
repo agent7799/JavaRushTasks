@@ -64,10 +64,10 @@ public class Client {
                 e.printStackTrace();
             }
             if (clientConnected) {
-                ConsoleHelper.writeMessage("Соединение установлено.\n" +
-                        "Для выхода наберите команду 'exit'.");
+                ConsoleHelper.writeMessage("РЎРѕРµРґРёРЅРµРЅРёРµ СѓСЃС‚Р°РЅРѕРІР»РµРЅРѕ.\n" +
+                        "Р”Р»СЏ РІС‹С…РѕРґР° РЅР°Р±РµСЂРёС‚Рµ РєРѕРјР°РЅРґСѓ 'exit'.");
             } else {
-                ConsoleHelper.writeMessage("Произошла ошибка во время работы клиента.");
+                ConsoleHelper.writeMessage("РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° РІРѕ РІСЂРµРјСЏ СЂР°Р±РѕС‚С‹ РєР»РёРµРЅС‚Р°.");
             }
 
 
