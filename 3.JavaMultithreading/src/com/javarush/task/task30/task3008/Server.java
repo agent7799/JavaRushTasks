@@ -35,9 +35,9 @@ public class Server {
         }
 
         private void notifyUsers(Connection connection, String userName) throws IOException {
-            for (Map.Entry<String, Connection> entry : connectionMap.entrySet()) {
-                if (entry.getKey().equals(userName)) {
-                    connection.send(new Message(MessageType.USER_ADDED, entry.getKey()));
+            for (String s : connectionMap.keySet()) {
+                if (!s.equals(userName)) {
+                    connection.send(new Message(MessageType.USER_ADDED, s));
                 }
             }
         }
@@ -56,32 +56,31 @@ public class Server {
         }
 
         public void run() {
-            ConsoleHelper.writeMessage("New connection established with " + String.valueOf(socket.getRemoteSocketAddress()));
-            String currentUserName = null;
+            ConsoleHelper.writeMessage("New connection established with " + socket.getRemoteSocketAddress());
+            String userName = null;
             try (Connection connection = new Connection(socket)) {
-                currentUserName = serverHandshake(connection);
-                sendBroadcastMessage(new Message(MessageType.USER_ADDED, currentUserName));
-                notifyUsers(connection, currentUserName);
-                serverMainLoop(connection, currentUserName);
-                sendBroadcastMessage(new Message(MessageType.USER_REMOVED, currentUserName));
-                connectionMap.remove(currentUserName);
+                userName = serverHandshake(connection);
+                sendBroadcastMessage(new Message(MessageType.USER_ADDED, userName));
+                notifyUsers(connection, userName);
+                serverMainLoop(connection, userName);
             } catch (IOException | ClassNotFoundException e) {
                 ConsoleHelper.writeMessage("Remote server data exchange error!");
+                ConsoleHelper.writeMessage("connection lost with " + socket.getRemoteSocketAddress());
             } finally {
+                connectionMap.remove(userName);
+                sendBroadcastMessage(new Message(MessageType.USER_REMOVED, userName));
                 ConsoleHelper.writeMessage("Connection closed");
             }
-
         }
-
-
     }
 
     public static void main(String[] args) {
+        System.out.println("Enter server port: ");
         int port = ConsoleHelper.readInt();
         ServerSocket serverSocket = null;
         try {
             serverSocket = new ServerSocket(port);
-            System.out.println("Server Started!");
+            System.out.println("Server Started on port " + port);
             while (true) {
                 Socket socket = serverSocket.accept();
                 Handler handler = new Handler(socket);

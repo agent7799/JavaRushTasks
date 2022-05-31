@@ -1,8 +1,12 @@
 package com.javarush.task.task30.task3008.client;
 
-import com.javarush.task.task30.task3008.*;
+import com.javarush.task.task30.task3008.Connection;
+import com.javarush.task.task30.task3008.ConsoleHelper;
+import com.javarush.task.task30.task3008.Message;
+import com.javarush.task.task30.task3008.MessageType;
 
 import java.io.IOException;
+import java.net.Socket;
 
 public class Client {
 
@@ -27,7 +31,7 @@ public class Client {
         protected void notifyConnectionStatusChanged(boolean clientConnected) {
             Client.this.clientConnected = clientConnected;
             synchronized (Client.this) {
-                Client.this.notify();
+                Client.this.notifyAll();
             }
         }
 
@@ -54,10 +58,24 @@ public class Client {
                     informAboutAddingNewUser(message.getData());
                 } else if (message.getType() == MessageType.USER_REMOVED) {
                     informAboutDeletingNewUser(message.getData());
-                } else {
-                    throw new IOException("Unexpected Message Type");
-                }
+                } else throw new IOException("Unexpected Message Type");
             }
+        }
+
+        public void run(){
+            String host = getServerAddress();
+            int port = getServerPort();
+            try {
+                Socket socket = new Socket(host, port);
+                connection = new Connection(socket);
+                clientHandshake();
+                clientMainLoop();
+            } catch (IOException | ClassNotFoundException e) {
+                notifyConnectionStatusChanged(false);
+                e.printStackTrace();
+            }
+
+
         }
     }
     
@@ -68,14 +86,17 @@ public class Client {
 
 
     protected String getServerAddress() {
+        System.out.println("Enter server address: ");
         return ConsoleHelper.readString();
     }
 
     protected int getServerPort() {
+        System.out.println("Enter Server port: ");
         return ConsoleHelper.readInt();
     }
 
     protected String getUserName() {
+        System.out.println("Enter user name: ");
         return ConsoleHelper.readString();
     }
 
@@ -110,6 +131,7 @@ public class Client {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
         if (clientConnected) {
             ConsoleHelper.writeMessage("Соединение установлено.\n" +
                     "Для выхода наберите команду 'exit'.");
