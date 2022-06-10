@@ -81,6 +81,7 @@ public class Server {
         try {
             serverSocket = new ServerSocket(port);
             System.out.println("Server Started on port " + port);
+            System.out.println("Server address: " +  serverSocket.getInetAddress().getHostName());
             while (true) {
                 Socket socket = serverSocket.accept();
                 Handler handler = new Handler(socket);
