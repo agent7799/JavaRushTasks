@@ -6,6 +6,15 @@ import java.net.Socket;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ *  to start chat - start server,
+ *  start chat bot,
+ *  start ClientGuiController for GUI client,
+ *  or Client for console client,
+ *
+ * enjoy!
+ */
+
 public class Server {
 
     private static Map<String, Connection> connectionMap = new ConcurrentHashMap<>();
