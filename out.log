@@ -41990,3 +41990,15 @@ Caused by: java.net.SocketTimeoutException: Read timed out
 	at org.apache.http.conn.ssl.SSLConnectionSocketFactory.connectSocket(SSLConnectionSocketFactory.java:353)
 	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:141)
 	... 13 more
+2022-06-10 20:01:43 INFO  ProjectStartupHandler.projectClosing(155) - ---------- Project closed ----------
+
+2022-06-10 20:01:44 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-06-10 20:01:44 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-06-10 20:01:44 INFO  PluginProjectService.dispose(41) - PluginProjectService for disposed.
+2022-06-10 20:15:36 INFO  ProjectStartupHandler.runActivity(74) - ---------- Project opened ----------
+2022-06-10 20:15:36 INFO  ProjectStartupHandler.runActivity(75) - ---------- Version 3.57 ----------
+
+2022-06-10 20:15:36 INFO  ApacheHttpClient.isSessionAppropriateWithSecretKey(602) - Waiting for server response.
+2022-06-10 20:15:37 INFO  ApacheHttpClient.refreshUserInfo(305) - responseCode = 200
+2022-06-10 20:15:37 INFO  ApacheHttpClient.refreshUserInfo(311) - User information received.
+2022-06-10 20:15:37 INFO  ApacheHttpClient.startGA(36) - GAService started.
