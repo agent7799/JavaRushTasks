@@ -1,4 +1,4 @@
-package com.javarush.task.task11.task1105;
+package com.javarush.task.task11.task1104.task1105;
 
 /* 
 ИТ-компания
