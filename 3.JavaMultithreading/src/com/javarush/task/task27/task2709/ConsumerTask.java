@@ -11,7 +11,11 @@ public class ConsumerTask implements Runnable {
 
     public void run() {
         while (!stopped) {
-            transferObject.get();
+            try {
+                transferObject.get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
