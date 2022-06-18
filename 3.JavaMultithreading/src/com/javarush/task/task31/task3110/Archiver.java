@@ -10,11 +10,18 @@ public class Archiver {
     public static void main(String[] args) throws Exception {
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter full path to .zip file:");
-        ZipFileManager zipFileManager = new ZipFileManager(Paths.get(scanner.nextLine()) );
+        System.out.println("Enter full path to .zip file: ");
+        String zipFile = scanner.nextLine();
+        zipFile = "c:\\Java\\test.zip";
+        System.out.println("Default is : " + zipFile);
+        ZipFileManager zipFileManager = new ZipFileManager(Paths.get(zipFile) );
 
         System.out.println("Enter full path to file to be archived:");
-        zipFileManager.createZip(Paths.get(scanner.nextLine()));
+        String archivedFile = scanner.nextLine();
+        archivedFile = "c:\\Java\\test.txt";
+        System.out.println("Default is : " + archivedFile);
+        System.out.println("Default: " + archivedFile);
+        zipFileManager.createZip(Paths.get(archivedFile));
     }
 
 }
