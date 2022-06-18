@@ -23,8 +23,6 @@ public class ZipFileManager {
             while (inputStream.available() > 0){
                 zipOutputStream.write(inputStream.read());
             }
-
-
             zipOutputStream.closeEntry();
         }
     }
