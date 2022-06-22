@@ -11,7 +11,7 @@ public class Archiver {
     public static Operation askOperation() throws IOException {
         ConsoleHelper.writeMessage("Веедите операцию:");
         for (Operation op : Operation.values()) {
-            ConsoleHelper.writeMessage(op.ordinal() + " - " + op.name());
+            ConsoleHelper.writeMessage(op.ordinal() + " - " + op.description);
         }
 
           return Operation.values()[ConsoleHelper.readInt()];
@@ -42,6 +42,7 @@ public class Archiver {
                 ConsoleHelper.writeMessage("Вы не выбрали файл архива или выбрали неверный файл.");
             } catch (Exception e) {
                 ConsoleHelper.writeMessage("Произошла ошибка. Проверьте введенные данные.");
+               // break;
             }
         }
 

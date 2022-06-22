@@ -11,8 +11,8 @@ public enum Operation {
 
     String description;
 
-    Operation(String name) {
-        this.description = name;
+    Operation(String description) {
+        this.description = description;
     }
 
     }
