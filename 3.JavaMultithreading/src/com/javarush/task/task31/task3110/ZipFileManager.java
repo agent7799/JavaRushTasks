@@ -53,15 +53,38 @@ public class ZipFileManager {
         }
     }
 
+    public List<FileProperties> getFilesList() throws Exception {
+        // Проверяем существует ли zip файл
+        if (!Files.isRegularFile(zipFile)) {
+            throw new WrongZipFileException();
+        }
+
+        List<FileProperties> files = new ArrayList<>();
+
+        try (ZipInputStream zipInputStream = new ZipInputStream(Files.newInputStream(zipFile))) {
+            ZipEntry zipEntry = zipInputStream.getNextEntry();
+
+            while (zipEntry != null) {
+                // Поля "размер" и "сжатый размер" не известны, пока элемент не будет прочитан
+                // Давайте вычитаем его в какой-то выходной поток
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                copyData(zipInputStream, baos);
+
+                FileProperties file = new FileProperties(zipEntry.getName(), zipEntry.getSize(), zipEntry.getCompressedSize(), zipEntry.getMethod());
+                files.add(file);
+                zipEntry = zipInputStream.getNextEntry();
+            }
+        }
+
+        return files;
+    }
+
     private void addNewZipEntry(ZipOutputStream zipOutputStream, Path filePath, Path fileName) throws Exception {
         Path fullPath = filePath.resolve(fileName);
         try (InputStream inputStream = Files.newInputStream(fullPath)) {
             ZipEntry entry = new ZipEntry(fileName.toString());
-
             zipOutputStream.putNextEntry(entry);
-
             copyData(inputStream, zipOutputStream);
-
             zipOutputStream.closeEntry();
         }
     }
@@ -73,36 +96,4 @@ public class ZipFileManager {
             out.write(buffer, 0, len);
         }
     }
-
-    /**
-     *
-     * @return
-     * @throws Exception
-     * В ZipEntry хранится информация об архивированном файле, полное описание есть внутри этого класса. Назовем ее
-     * заголовок. Когда прочли ZipEntry с помощью getNextEntry(), то наш метод заодно установил позицию для чтения
-     * байтов-данных файла. Если нам нужны данные файла, мы считываем их в файл или буфер  данные из потока
-     * zipInputStream, пока не закончатся.
-     * В нашем случае  данные файла нам не нужны,  но чтобы получить корректный размер файла мы читаем данные во
-     * временный буфер. Иначе entry.getSize() вернет  -1 ( без чтения размер не определяется).
-     */
-    public List<FileProperties> getFilesList() throws Exception{
-        if(!Files.isRegularFile(zipFile)){
-            throw new WrongZipFileException();
-        }
-        List<FileProperties> filePropertiesList = new ArrayList<>();
-
-        try (ZipInputStream zipInputStream = new ZipInputStream(Files.newInputStream(zipFile));
-             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()){
-
-            ZipEntry zipEntry;
-            byte[] bytes;
-            while ((zipEntry = zipInputStream.getNextEntry()) != null){
-                copyData(zipInputStream, byteArrayOutputStream);
-                filePropertiesList.add(new FileProperties(zipEntry.getName(), zipEntry.getSize(), zipEntry.getCompressedSize(), zipEntry.getMethod()));
-            }
-        }
-
-        return filePropertiesList;
-    }
-
 }
