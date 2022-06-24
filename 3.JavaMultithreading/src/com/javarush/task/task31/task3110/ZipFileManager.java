@@ -1,13 +1,17 @@
 package com.javarush.task.task31.task3110;
 
 import com.javarush.task.task31.task3110.exception.PathIsNotFoundException;
+import com.javarush.task.task31.task3110.exception.WrongZipFileException;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 public class ZipFileManager {
@@ -69,4 +73,36 @@ public class ZipFileManager {
             out.write(buffer, 0, len);
         }
     }
+
+    /**
+     *
+     * @return
+     * @throws Exception
+     * В ZipEntry хранится информация об архивированном файле, полное описание есть внутри этого класса. Назовем ее
+     * заголовок. Когда прочли ZipEntry с помощью getNextEntry(), то наш метод заодно установил позицию для чтения
+     * байтов-данных файла. Если нам нужны данные файла, мы считываем их в файл или буфер  данные из потока
+     * zipInputStream, пока не закончатся.
+     * В нашем случае  данные файла нам не нужны,  но чтобы получить корректный размер файла мы читаем данные во
+     * временный буфер. Иначе entry.getSize() вернет  -1 ( без чтения размер не определяется).
+     */
+    public List<FileProperties> getFilesList() throws Exception{
+        if(!Files.isRegularFile(zipFile)){
+            throw new WrongZipFileException();
+        }
+        List<FileProperties> filePropertiesList = new ArrayList<>();
+
+        try (ZipInputStream zipInputStream = new ZipInputStream(Files.newInputStream(zipFile));
+             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()){
+
+            ZipEntry zipEntry;
+            byte[] bytes;
+            while ((zipEntry = zipInputStream.getNextEntry()) != null){
+                copyData(zipInputStream, byteArrayOutputStream);
+                filePropertiesList.add(new FileProperties(zipEntry.getName(), zipEntry.getSize(), zipEntry.getCompressedSize(), zipEntry.getMethod()));
+            }
+        }
+
+        return filePropertiesList;
+    }
+
 }
