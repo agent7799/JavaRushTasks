@@ -6,21 +6,20 @@ import com.javarush.task.task31.task3110.ZipFileManager;
 
 import java.util.List;
 
-public class ZipContentCommand extends ZipCommand{
-    @Override
-    public ZipFileManager getZipFileManager() throws Exception {
-        return super.getZipFileManager();
-    }
-
+public class ZipContentCommand extends ZipCommand {
     @Override
     public void execute() throws Exception {
+        ConsoleHelper.writeMessage("Просмотр содержимого архива.");
 
         ZipFileManager zipFileManager = getZipFileManager();
+
         ConsoleHelper.writeMessage("Содержимое архива:");
-        List<FileProperties> filePropertiesList = zipFileManager.getFilesList();
-        for (FileProperties f : filePropertiesList) {
-            ConsoleHelper.writeMessage(f.toString());
+
+        List<FileProperties> files = zipFileManager.getFilesList();
+        for (FileProperties file : files) {
+            ConsoleHelper.writeMessage(file.toString());
         }
+
         ConsoleHelper.writeMessage("Содержимое архива прочитано.");
     }
 }

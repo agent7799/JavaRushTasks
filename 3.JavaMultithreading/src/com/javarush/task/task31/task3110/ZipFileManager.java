@@ -96,4 +96,40 @@ public class ZipFileManager {
             out.write(buffer, 0, len);
         }
     }
+
+    public void extractAll(Path outputFolder) throws Exception{
+        //Проверяем, есть ли zip файл вообще
+        if(!Files.isRegularFile(zipFile)) {
+            ConsoleHelper.writeMessage("Файл не найден. Неверное имя файла.");
+            throw new WrongZipFileException();
+        }
+
+        // Проверяем, существует ли директория, куда будет извлекаться архив
+        // При необходимости создаем ее
+        if (Files.notExists(outputFolder))
+            Files.createDirectories(outputFolder);
+
+        // Создаем zip поток
+        try (ZipInputStream zipInputStream = new ZipInputStream(Files.newInputStream(zipFile))) {
+            ZipEntry zipEntry;
+            // Проходимся по содержимому zip потока (файла)
+            while ((zipEntry = zipInputStream.getNextEntry()) != null){
+                String fileName = zipEntry.getName();
+                Path fullPath = outputFolder.resolve(fileName);
+                // Создаем необходимые директории
+                if(Files.notExists(fullPath.getParent())){
+                    Files.createDirectories(fullPath.getParent());
+                    //System.out.println("file " + fullPath + " created");
+                }
+
+                try(OutputStream outputStream = Files.newOutputStream(fullPath)) {
+                    copyData(zipInputStream, outputStream);
+                    System.out.println("file:  " + fullPath + " extracted...");
+               }
+            zipInputStream.closeEntry();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

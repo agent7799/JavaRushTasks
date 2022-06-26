@@ -13,6 +13,8 @@ public class Archiver {
         for (Operation op : Operation.values()) {
             ConsoleHelper.writeMessage(op.ordinal() + " - " + op.description);
         }
+        System.out.println("c:\\java\\test.zip");
+        System.out.println("c:\\java\\z");
 
           return Operation.values()[ConsoleHelper.readInt()];
     }
