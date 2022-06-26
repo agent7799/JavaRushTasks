@@ -83,8 +83,11 @@ public class ZipFileManager {
         Path fullPath = filePath.resolve(fileName);
         try (InputStream inputStream = Files.newInputStream(fullPath)) {
             ZipEntry entry = new ZipEntry(fileName.toString());
+
             zipOutputStream.putNextEntry(entry);
+
             copyData(inputStream, zipOutputStream);
+
             zipOutputStream.closeEntry();
         }
     }
@@ -125,8 +128,8 @@ public class ZipFileManager {
                 try(OutputStream outputStream = Files.newOutputStream(fullPath)) {
                     copyData(zipInputStream, outputStream);
                     System.out.println("file:  " + fullPath + " extracted...");
-               }
-            zipInputStream.closeEntry();
+                }
+                zipInputStream.closeEntry();
             }
         }catch (Exception e){
             e.printStackTrace();
