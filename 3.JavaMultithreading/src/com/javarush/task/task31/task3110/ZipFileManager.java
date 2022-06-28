@@ -187,6 +187,7 @@ public class ZipFileManager {
                 // Проходимся по содержимому zip потока (файла)
                 while ((zipEntry = zipInputStream.getNextEntry()) != null) {
                     Path entryName = Paths.get(zipEntry.getName());
+                    System.out.println("zzzzzzzzzzzzzzzz" + zipEntry.getName());
                     filesListInArchive.add(entryName);
 
                     zipOutputStream.putNextEntry(zipEntry);
