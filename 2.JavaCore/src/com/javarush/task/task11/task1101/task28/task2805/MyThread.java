@@ -1,4 +1,4 @@
-package com.javarush.task.task28.task2805;
+package com.javarush.task.task11.task1101.task28.task2805;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

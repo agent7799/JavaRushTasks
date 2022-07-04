@@ -1,4 +1,4 @@
-package com.javarush.task.task28.task2804;
+package com.javarush.task.task11.task1101.task28.task2804;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
