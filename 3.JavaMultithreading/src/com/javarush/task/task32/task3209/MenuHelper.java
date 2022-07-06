@@ -32,17 +32,17 @@ public class MenuHelper {
     }
 
     public static void initHelpMenu(View view, JMenuBar menuBar) {
-        JMenu helpMenu = new JMenu("Помощь");
+        JMenu helpMenu = new JMenu("РџРѕРјРѕС‰СЊ");
         menuBar.add(helpMenu);
 
-        addMenuItem(helpMenu, "О программе", view);
+        addMenuItem(helpMenu, "Рћ РїСЂРѕРіСЂР°РјРјРµ", view);
     }
 
     public static void initFontMenu(View view, JMenuBar menuBar) {
-        JMenu fontMenu = new JMenu("Шрифт");
+        JMenu fontMenu = new JMenu("РЁСЂРёС„С‚");
         menuBar.add(fontMenu);
 
-        JMenu fontTypeMenu = new JMenu("Шрифт");
+        JMenu fontTypeMenu = new JMenu("РЁСЂРёС„С‚");
         fontMenu.add(fontTypeMenu);
 
         String[] fontTypes = {Font.SANS_SERIF, Font.SERIF, Font.MONOSPACED, Font.DIALOG, Font.DIALOG_INPUT};
@@ -50,7 +50,7 @@ public class MenuHelper {
             addMenuItem(fontTypeMenu, fontType, new StyledEditorKit.FontFamilyAction(fontType, fontType));
         }
 
-        JMenu fontSizeMenu = new JMenu("Размер шрифта");
+        JMenu fontSizeMenu = new JMenu("Р Р°Р·РјРµСЂ С€СЂРёС„С‚Р°");
         fontMenu.add(fontSizeMenu);
 
         String[] fontSizes = {"6", "8", "10", "12", "14", "16", "20", "24", "32", "36", "48", "72"};
@@ -62,71 +62,71 @@ public class MenuHelper {
     }
 
     public static void initColorMenu(View view, JMenuBar menuBar) {
-        JMenu colorMenu = new JMenu("Цвет");
+        JMenu colorMenu = new JMenu("Р¦РІРµС‚");
         menuBar.add(colorMenu);
 
-        addMenuItem(colorMenu, new StyledEditorKit.ForegroundAction("Красный", Color.red));
-        addMenuItem(colorMenu, new StyledEditorKit.ForegroundAction("Оранжевый", Color.orange));
-        addMenuItem(colorMenu, new StyledEditorKit.ForegroundAction("Желтый", Color.yellow));
-        addMenuItem(colorMenu, new StyledEditorKit.ForegroundAction("Зеленый", Color.green));
-        addMenuItem(colorMenu, new StyledEditorKit.ForegroundAction("Синий", Color.blue));
-        addMenuItem(colorMenu, new StyledEditorKit.ForegroundAction("Голубой", Color.cyan));
-        addMenuItem(colorMenu, new StyledEditorKit.ForegroundAction("Пурпурный", Color.magenta));
-        addMenuItem(colorMenu, new StyledEditorKit.ForegroundAction("Черный", Color.black));
+        addMenuItem(colorMenu, new StyledEditorKit.ForegroundAction("РљСЂР°СЃРЅС‹Р№", Color.red));
+        addMenuItem(colorMenu, new StyledEditorKit.ForegroundAction("РћСЂР°РЅР¶РµРІС‹Р№", Color.orange));
+        addMenuItem(colorMenu, new StyledEditorKit.ForegroundAction("Р–РµР»С‚С‹Р№", Color.yellow));
+        addMenuItem(colorMenu, new StyledEditorKit.ForegroundAction("Р—РµР»РµРЅС‹Р№", Color.green));
+        addMenuItem(colorMenu, new StyledEditorKit.ForegroundAction("РЎРёРЅРёР№", Color.blue));
+        addMenuItem(colorMenu, new StyledEditorKit.ForegroundAction("Р“РѕР»СѓР±РѕР№", Color.cyan));
+        addMenuItem(colorMenu, new StyledEditorKit.ForegroundAction("РџСѓСЂРїСѓСЂРЅС‹Р№", Color.magenta));
+        addMenuItem(colorMenu, new StyledEditorKit.ForegroundAction("Р§РµСЂРЅС‹Р№", Color.black));
 
         colorMenu.addMenuListener(new TextEditMenuListener(view));
     }
 
     public static void initAlignMenu(View view, JMenuBar menuBar) {
-        JMenu alignMenu = new JMenu("Выравнивание");
+        JMenu alignMenu = new JMenu("Р’С‹СЂР°РІРЅРёРІР°РЅРёРµ");
         menuBar.add(alignMenu);
 
-        addMenuItem(alignMenu, new StyledEditorKit.AlignmentAction("По левому краю", StyleConstants.ALIGN_LEFT));
-        addMenuItem(alignMenu, new StyledEditorKit.AlignmentAction("По центру", StyleConstants.ALIGN_CENTER));
-        addMenuItem(alignMenu, new StyledEditorKit.AlignmentAction("По правому краю", StyleConstants.ALIGN_RIGHT));
+        addMenuItem(alignMenu, new StyledEditorKit.AlignmentAction("РџРѕ Р»РµРІРѕРјСѓ РєСЂР°СЋ", StyleConstants.ALIGN_LEFT));
+        addMenuItem(alignMenu, new StyledEditorKit.AlignmentAction("РџРѕ С†РµРЅС‚СЂСѓ", StyleConstants.ALIGN_CENTER));
+        addMenuItem(alignMenu, new StyledEditorKit.AlignmentAction("РџРѕ РїСЂР°РІРѕРјСѓ РєСЂР°СЋ", StyleConstants.ALIGN_RIGHT));
 
         alignMenu.addMenuListener(new TextEditMenuListener(view));
     }
 
     public static void initStyleMenu(View view, JMenuBar menuBar) {
-        JMenu styleMenu = new JMenu("Стиль");
+        JMenu styleMenu = new JMenu("РЎС‚РёР»СЊ");
         menuBar.add(styleMenu);
 
-        addMenuItem(styleMenu, "Полужирный", new StyledEditorKit.BoldAction());
-        addMenuItem(styleMenu, "Подчеркнутый", new StyledEditorKit.UnderlineAction());
-        addMenuItem(styleMenu, "Курсив", new StyledEditorKit.ItalicAction());
+        addMenuItem(styleMenu, "РџРѕР»СѓР¶РёСЂРЅС‹Р№", new StyledEditorKit.BoldAction());
+        addMenuItem(styleMenu, "РџРѕРґС‡РµСЂРєРЅСѓС‚С‹Р№", new StyledEditorKit.UnderlineAction());
+        addMenuItem(styleMenu, "РљСѓСЂСЃРёРІ", new StyledEditorKit.ItalicAction());
 
         styleMenu.addSeparator();
 
-        addMenuItem(styleMenu, "Подстрочный знак", new SubscriptAction());
-        addMenuItem(styleMenu, "Надстрочный знак", new SuperscriptAction());
-        addMenuItem(styleMenu, "Зачеркнутый", new StrikeThroughAction());
+        addMenuItem(styleMenu, "РџРѕРґСЃС‚СЂРѕС‡РЅС‹Р№ Р·РЅР°Рє", new SubscriptAction());
+        addMenuItem(styleMenu, "РќР°РґСЃС‚СЂРѕС‡РЅС‹Р№ Р·РЅР°Рє", new SuperscriptAction());
+        addMenuItem(styleMenu, "Р—Р°С‡РµСЂРєРЅСѓС‚С‹Р№", new StrikeThroughAction());
 
         styleMenu.addMenuListener(new TextEditMenuListener(view));
     }
 
     public static void initEditMenu(View view, JMenuBar menuBar) {
-        JMenu editMenu = new JMenu("Редактировать");
+        JMenu editMenu = new JMenu("Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ");
         menuBar.add(editMenu);
 
-        JMenuItem undoItem = addMenuItem(editMenu, "Отменить", new UndoAction(view));
-        JMenuItem redoItem = addMenuItem(editMenu, "Вернуть", new RedoAction(view));
-        addMenuItem(editMenu, "Вырезать", new DefaultEditorKit.CutAction());
-        addMenuItem(editMenu, "Копировать", new DefaultEditorKit.CopyAction());
-        addMenuItem(editMenu, "Вставить", new DefaultEditorKit.PasteAction());
+        JMenuItem undoItem = addMenuItem(editMenu, "РћС‚РјРµРЅРёС‚СЊ", new UndoAction(view));
+        JMenuItem redoItem = addMenuItem(editMenu, "Р’РµСЂРЅСѓС‚СЊ", new RedoAction(view));
+        addMenuItem(editMenu, "Р’С‹СЂРµР·Р°С‚СЊ", new DefaultEditorKit.CutAction());
+        addMenuItem(editMenu, "РљРѕРїРёСЂРѕРІР°С‚СЊ", new DefaultEditorKit.CopyAction());
+        addMenuItem(editMenu, "Р’СЃС‚Р°РІРёС‚СЊ", new DefaultEditorKit.PasteAction());
 
         editMenu.addMenuListener(new UndoMenuListener(view, undoItem, redoItem));
     }
 
     public static void initFileMenu(View view, JMenuBar menuBar) {
-        JMenu fileMenu = new JMenu("Файл");
+        JMenu fileMenu = new JMenu("Р¤Р°Р№Р»");
         menuBar.add(fileMenu);
 
-        addMenuItem(fileMenu, "Новый", view);
-        addMenuItem(fileMenu, "Открыть", view);
-        addMenuItem(fileMenu, "Сохранить", view);
-        addMenuItem(fileMenu, "Сохранить как...", view);
+        addMenuItem(fileMenu, "РќРѕРІС‹Р№", view);
+        addMenuItem(fileMenu, "РћС‚РєСЂС‹С‚СЊ", view);
+        addMenuItem(fileMenu, "РЎРѕС…СЂР°РЅРёС‚СЊ", view);
+        addMenuItem(fileMenu, "РЎРѕС…СЂР°РЅРёС‚СЊ РєР°Рє...", view);
         fileMenu.addSeparator();
-        addMenuItem(fileMenu, "Выход", view);
+        addMenuItem(fileMenu, "Р’С‹С…РѕРґ", view);
     }
 }

@@ -66,7 +66,7 @@ public class View extends JFrame implements ActionListener {
         JScrollPane htmlScrollPane = new JScrollPane(htmlTextPane);
         tabbedPane.addTab("HTML", htmlScrollPane);
         JScrollPane textScrollPane = new JScrollPane(plainTextPane);
-        tabbedPane.addTab("Текст", textScrollPane);
+        tabbedPane.addTab("РўРµРєСЃС‚", textScrollPane);
         tabbedPane.setPreferredSize(new Dimension(200, 200));
         TabbedPaneChangeListener tabbedPaneChangeListener = new TabbedPaneChangeListener(this);
         tabbedPane.addChangeListener(tabbedPaneChangeListener);
@@ -81,5 +81,13 @@ public class View extends JFrame implements ActionListener {
 
 
     public void selectedTabChanged() {
+    }
+
+    public boolean canUndo(){
+        return false;
+    }
+
+    public boolean canRedo(){
+        return false;
     }
 }
