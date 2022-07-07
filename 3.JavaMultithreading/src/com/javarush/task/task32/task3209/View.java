@@ -46,6 +46,7 @@ public class View extends JFrame implements ActionListener {
         initGui();
         FrameListener listener = new FrameListener(this);
         addWindowListener(listener);
+        setName("HTML / TEXT EDITOR");
         setSize(800, 600);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -87,7 +88,6 @@ public class View extends JFrame implements ActionListener {
         pack();
     }
 
-
     public void selectedTabChanged() {
     }
 
@@ -106,6 +106,7 @@ public class View extends JFrame implements ActionListener {
             ExceptionHandler.log(e);
         }
     }
+
     public void redo(){
         try{
             undoManager.redo();
@@ -113,7 +114,12 @@ public class View extends JFrame implements ActionListener {
             ExceptionHandler.log(e);
         }
     }
+
     public void resetUndo(){
         undoManager.discardAllEdits();
+    }
+
+    public boolean isHtmlTabSelected(){
+        return (tabbedPane.getSelectedIndex() == 0);
     }
 }
