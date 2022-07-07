@@ -8,6 +8,7 @@ import javax.swing.text.html.HTMLEditorKit;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.io.StringWriter;
 
 public class Controller {
 
@@ -53,10 +54,23 @@ public class Controller {
         resetDocument();
         StringReader reader = new StringReader(text);
         try {
-            new HTMLEditorKit().read(reader, document, 0);
+            HTMLEditorKit kit = new HTMLEditorKit();
+            kit.read(reader, document, 0);
         } catch (IOException | BadLocationException e) {
             ExceptionHandler.log(e);
         }
+    }
+
+    public String getPlainText(){
+        StringWriter writer = new StringWriter();
+        try{
+            HTMLEditorKit kit = new HTMLEditorKit();
+            kit.write(writer,document, 0, document.getLength());
+            writer.flush();
+        }catch (IOException | BadLocationException e) {
+            ExceptionHandler.log(e);
+        }
+        return writer.toString();
     }
 
 }
