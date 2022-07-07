@@ -40,6 +40,18 @@ public class Controller {
         System.exit(0);
     }
 
+    public void saveDocumentAs() {
+    }
+
+    public void saveDocument() {
+    }
+
+    public void openDocument() {
+    }
+
+    public void createNewDocument() {
+    }
+
     public void resetDocument() {
         UndoListener listener = view.getUndoListener();
         if (document != null) {

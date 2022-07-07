@@ -39,8 +39,31 @@ public class View extends JFrame implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent actionEvent) {
+        String event = actionEvent.getActionCommand();
+        switch (event) {
+            case "Новый" :
+                controller.createNewDocument();
+                break;
+            case "Открыть" :
+                controller.openDocument();
+                break;
+            case "Сохранить" :
+                controller.saveDocument();
+                break;
+            case "Сохранить как..." :
+                controller.saveDocumentAs();
+                break;
+            case "Выход" :
+                exit();
+                break;
+            case "О программе" :
+                showAbout();
+                break;
+        }
     }
+
+
 
     public void init(){
         initGui();
@@ -75,7 +98,7 @@ public class View extends JFrame implements ActionListener {
         JScrollPane htmlScrollPane = new JScrollPane(htmlTextPane);
         tabbedPane.addTab("HTML", htmlScrollPane);
         JScrollPane textScrollPane = new JScrollPane(plainTextPane);
-        tabbedPane.addTab("�����", textScrollPane);
+        tabbedPane.addTab("Текст", textScrollPane);
         tabbedPane.setPreferredSize(new Dimension(200, 200));
         TabbedPaneChangeListener tabbedPaneChangeListener = new TabbedPaneChangeListener(this);
         tabbedPane.addChangeListener(tabbedPaneChangeListener);
@@ -141,7 +164,7 @@ public class View extends JFrame implements ActionListener {
     }
 
     public void showAbout(){
-        JOptionPane.showMessageDialog(this,  "text / html editor \n\r ver. 0.1", "� ���������", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this,  "text / html editor \n\r ver. 0.1", "О программе", JOptionPane.INFORMATION_MESSAGE);
     }
 
 
