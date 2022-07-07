@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 public class UndoAction extends AbstractAction {
-    View view;
+    private View view;
 
     public UndoAction(View view){
         this.view = view;
@@ -15,6 +15,6 @@ public class UndoAction extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        view.undo();
     }
 }
