@@ -89,6 +89,13 @@ public class View extends JFrame implements ActionListener {
     }
 
     public void selectedTabChanged() {
+        if(tabbedPane.getSelectedIndex() == 0){
+            String text = plainTextPane.getText();
+            controller.setPlainText(text);
+        }else if (tabbedPane.getSelectedIndex() == 1){
+            plainTextPane.setText(controller.getPlainText());
+        }
+        resetUndo();
     }
 
     public boolean canUndo(){
@@ -136,4 +143,6 @@ public class View extends JFrame implements ActionListener {
     public void showAbout(){
         JOptionPane.showMessageDialog(this,  "text / html editor \n\r ver. 0.1", "О программе", JOptionPane.INFORMATION_MESSAGE);
     }
+
+
 }
