@@ -14,12 +14,13 @@ public class Controller {
     private HTMLDocument document;
     private File currentFile;
 
-    public HTMLDocument getDocument() {
-        return document;
-    }
-
     public Controller(View view) {
         this.view = view;
+    }
+
+
+    public HTMLDocument getDocument() {
+        return document;
     }
 
     public static void main(String[] args) {
@@ -33,7 +34,6 @@ public class Controller {
     public void init() {
         createNewDocument();
     }
-
 
     public void exit() {
         System.exit(0);
