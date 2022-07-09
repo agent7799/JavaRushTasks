@@ -2,13 +2,11 @@ package com.javarush.task.task32.task3209;
 
 import com.javarush.task.task32.task3209.listeners.UndoListener;
 
+import javax.swing.*;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
-import java.io.File;
-import java.io.IOException;
-import java.io.StringReader;
-import java.io.StringWriter;
+import java.io.*;
 
 public class Controller {
 
@@ -36,11 +34,30 @@ public class Controller {
         createNewDocument();
     }
 
+
     public void exit() {
         System.exit(0);
     }
 
     public void saveDocumentAs() {
+        view.selectHtmlTab();
+        JFileChooser saveFileDialog = new JFileChooser();
+        saveFileDialog.setFileFilter(new HTMLFileFilter());
+        saveFileDialog.setDialogTitle("Save File");
+        int returnVal = saveFileDialog.showSaveDialog(view);
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            currentFile = saveFileDialog.getSelectedFile();
+            System.out.println(currentFile);
+            view.setTitle(currentFile.getName());
+            try (FileWriter writer = new FileWriter(currentFile)){
+                HTMLEditorKit kit = new HTMLEditorKit();
+                kit.write(writer, document, 0, document.getLength());
+                writer.flush();
+            } catch (IOException | BadLocationException e) {
+                ExceptionHandler.log(e);
+            }
+        }
     }
 
     public void saveDocument() {
@@ -54,8 +71,6 @@ public class Controller {
         resetDocument();
         view.setTitle("HTML редактор");
         currentFile = null;
-
-
     }
 
     public void resetDocument() {
@@ -85,6 +100,7 @@ public class Controller {
             HTMLEditorKit kit = new HTMLEditorKit();
             kit.write(writer,document, 0, document.getLength());
             writer.flush();
+            writer.close();
         }catch (IOException | BadLocationException e) {
             ExceptionHandler.log(e);
         }
