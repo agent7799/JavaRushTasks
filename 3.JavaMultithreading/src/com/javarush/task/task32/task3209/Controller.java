@@ -41,14 +41,13 @@ public class Controller {
 
     public void saveDocumentAs() {
         view.selectHtmlTab();
-        JFileChooser saveFileDialog = new JFileChooser();
-        saveFileDialog.setFileFilter(new HTMLFileFilter());
-        saveFileDialog.setDialogTitle("Save File");
-        int returnVal = saveFileDialog.showSaveDialog(view);
+        JFileChooser saveFileChooser = new JFileChooser();
+        saveFileChooser.setFileFilter(new HTMLFileFilter());
+        saveFileChooser.setDialogTitle("Save File As");
+        int returnVal = saveFileChooser.showSaveDialog(view);
 
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            currentFile = saveFileDialog.getSelectedFile();
-            System.out.println(currentFile);
+            currentFile = saveFileChooser.getSelectedFile();
             view.setTitle(currentFile.getName());
             try (FileWriter writer = new FileWriter(currentFile)){
                 HTMLEditorKit kit = new HTMLEditorKit();
@@ -61,9 +60,41 @@ public class Controller {
     }
 
     public void saveDocument() {
+        view.selectHtmlTab();
+        if (currentFile == null) {
+            saveDocumentAs();
+        }else {
+            try (FileWriter writer = new FileWriter(currentFile)) {
+                HTMLEditorKit kit = new HTMLEditorKit();
+                kit.write(writer, document, 0, document.getLength());
+                writer.flush();
+            } catch (IOException | BadLocationException e) {
+                ExceptionHandler.log(e);
+            }
+        }
+
     }
 
     public void openDocument() {
+        view.selectHtmlTab();
+        JFileChooser openFileChooser = new JFileChooser();
+        openFileChooser.setFileFilter(new HTMLFileFilter());
+        openFileChooser.setDialogTitle("Save File As");
+        int returnVal = openFileChooser.showOpenDialog(view);
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            currentFile = openFileChooser.getSelectedFile();
+            resetDocument();
+            view.setTitle(currentFile.getName());
+
+            try (FileReader reader = new FileReader(currentFile)){
+                HTMLEditorKit kit = new HTMLEditorKit();
+                kit.read(reader, document, 0);
+                view.resetUndo();
+            } catch (IOException | BadLocationException e) {
+                ExceptionHandler.log(e);
+            }
+        }
     }
 
     public void createNewDocument() {
