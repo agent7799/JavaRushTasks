@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 /* 
-И еще раз рефакторинг Ӏ Java Multithreading: 9 уровень, 9 лекция
+И еще раз рефакторинг ? Java Multithreading: 9 уровень, 9 лекция
 */
 
 public class Solution {
@@ -28,9 +28,10 @@ public class Solution {
             if (tryNumber > secret)
                 if (i < 10)
                     System.out.println("Загаданное число меньше");
-            if (tryNumber == secret)
+            if (tryNumber == secret){
                 i = stopGame();
-            flagWin = true;
+                flagWin = true;
+            }
         }
         if (flagWin)
             printCongratulations(tryNumber);
