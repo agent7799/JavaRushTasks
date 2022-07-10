@@ -12,6 +12,9 @@ public class Solution {
     }
 
     public static BigDecimal getValue(double v1, double v2) {
-        return new BigDecimal(v1).add(new BigDecimal(v2));
+        BigDecimal bd1 = new BigDecimal(String.valueOf((v1)));
+        BigDecimal bd2 = new BigDecimal(String.valueOf((v2)));
+
+        return bd1.add(bd2);
     }
 }
