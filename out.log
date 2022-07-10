@@ -45877,3 +45877,68 @@ java.lang.StringIndexOutOfBoundsException: String index out of range: -1
 2022-07-10 23:23:57 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
 2022-07-10 23:23:59 INFO  ApacheHttpClient.getWebResourceAsStream(502) - responseCode = 200
 2022-07-10 23:23:59 INFO  ApacheHttpClient.getFilteredTasks(336) - responseCode = 200
+2022-07-10 23:34:21 INFO  ApacheHttpClient.getWebResourceAsStream(502) - responseCode = 200
+2022-07-10 23:34:21 INFO  ApacheHttpClient.completed(32) - responseCode = 400
+2022-07-10 23:34:21 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-07-10 23:34:21 WARN  TaskCompleted.run(74) - You already completed this task: "Преобразование списка в массив"
+com.homework.plugin.analytics.PluginWarningException: warning
+	at com.homework.plugin.callback.TaskCompleted.run(TaskCompleted.java:74)
+	at com.intellij.openapi.application.TransactionGuardImpl.runWithWritingAllowed(TransactionGuardImpl.java:214)
+	at com.intellij.openapi.application.TransactionGuardImpl.access$200(TransactionGuardImpl.java:21)
+	at com.intellij.openapi.application.TransactionGuardImpl$2.run(TransactionGuardImpl.java:196)
+	at com.intellij.openapi.application.impl.ApplicationImpl.runIntendedWriteActionOnCurrentThread(ApplicationImpl.java:805)
+	at com.intellij.openapi.application.impl.ApplicationImpl.lambda$invokeLater$4(ApplicationImpl.java:348)
+	at com.intellij.openapi.application.impl.FlushQueue.doRun(FlushQueue.java:82)
+	at com.intellij.openapi.application.impl.FlushQueue.runNextEvent(FlushQueue.java:131)
+	at com.intellij.openapi.application.impl.FlushQueue.flushNow(FlushQueue.java:47)
+	at com.intellij.openapi.application.impl.FlushQueue$FlushNow.run(FlushQueue.java:187)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:313)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:776)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:727)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:721)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:85)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:746)
+	at com.intellij.ide.IdeEventQueue.defaultDispatchEvent(IdeEventQueue.java:891)
+	at com.intellij.ide.IdeEventQueue._dispatchEvent(IdeEventQueue.java:760)
+	at com.intellij.ide.IdeEventQueue.lambda$dispatchEvent$6(IdeEventQueue.java:447)
+	at com.intellij.openapi.progress.impl.CoreProgressManager.computePrioritized(CoreProgressManager.java:818)
+	at com.intellij.ide.IdeEventQueue.lambda$dispatchEvent$7(IdeEventQueue.java:446)
+	at com.intellij.openapi.application.impl.ApplicationImpl.runIntendedWriteActionOnCurrentThread(ApplicationImpl.java:805)
+	at com.intellij.ide.IdeEventQueue.dispatchEvent(IdeEventQueue.java:492)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+2022-07-10 23:34:26 INFO  ApacheHttpClient.getWebResourceAsStream(502) - responseCode = 200
+2022-07-10 23:36:41 INFO  ProjectStartupHandler.projectClosing(155) - ---------- Project closed ----------
+
+2022-07-10 23:36:41 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-07-10 23:36:41 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-07-10 23:36:41 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-07-10 23:36:41 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-07-10 23:36:42 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-07-10 23:36:42 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-07-10 23:36:42 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-07-10 23:36:42 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-07-10 23:36:42 INFO  PluginProjectService.dispose(41) - PluginProjectService for disposed.
+2022-07-10 23:37:14 INFO  ProjectStartupHandler.runActivity(74) - ---------- Project opened ----------
+2022-07-10 23:37:14 INFO  ProjectStartupHandler.runActivity(75) - ---------- Version 3.57 ----------
+
+2022-07-10 23:37:14 INFO  ApacheHttpClient.isSessionAppropriateWithSecretKey(602) - Waiting for server response.
+2022-07-10 23:37:14 INFO  ApacheHttpClient.refreshUserInfo(305) - responseCode = 200
+2022-07-10 23:37:14 INFO  ApacheHttpClient.refreshUserInfo(311) - User information received.
+2022-07-10 23:37:14 INFO  ApacheHttpClient.startGA(36) - GAService started.
+2022-07-10 23:46:58 INFO  ApacheHttpClient.getWebResourceAsStream(502) - responseCode = 200
+2022-07-10 23:46:58 INFO  ApacheHttpClient.getFilteredTasks(336) - responseCode = 200
+2022-07-10 23:46:59 INFO  ApacheHttpClient.getTaskTemplateInfo(353) - responseCode = 200
+2022-07-10 23:46:59 INFO  TaskInfoSelectorMouseListener.createDirectoryRecursive(77) - File created :C:/JAVA/JavaRushTasks/3.JavaMultithreading/src/com/javarush/task/task29/task2905
+2022-07-11 00:06:57 INFO  ApacheHttpClient.getWebResourceAsStream(502) - responseCode = 200
+2022-07-11 00:06:57 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-07-11 00:11:23 INFO  ApacheHttpClient.getWebResourceAsStream(502) - responseCode = 200
+2022-07-11 00:11:24 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-07-11 00:11:27 INFO  ApacheHttpClient.completed(32) - responseCode = 200
+2022-07-11 00:11:27 INFO  ApacheHttpClient.getTask(488) - responseCode = 200
+2022-07-11 00:13:31 INFO  ApacheHttpClient.getWebResourceAsStream(502) - responseCode = 200
