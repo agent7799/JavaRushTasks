@@ -1,6 +1,7 @@
 package com.javarush.task.task27.task2712;
 
 import com.javarush.task.task27.task2712.kitchen.Cook;
+import com.javarush.task.task27.task2712.kitchen.Waiter;
 
 import java.io.IOException;
 
@@ -11,7 +12,14 @@ public class Restaurant {
 
 
         Tablet tablet = new Tablet(1);
-        tablet.addObserver(new Cook("Amigo"));
+        Cook cook = new Cook("Amigo");
+        tablet.addObserver(cook);
+
+        //создан новый официант и добавлен повару в качестве
+        // наблюдателя с помощью метода addObserver.
+        Waiter waiter = new Waiter();
+        cook.addObserver(waiter);
+
         tablet.createOrder();
 //        tablet.createOrder();
 //        tablet.createOrder();
