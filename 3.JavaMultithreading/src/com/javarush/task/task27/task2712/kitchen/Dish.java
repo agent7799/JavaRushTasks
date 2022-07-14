@@ -1,19 +1,22 @@
 package com.javarush.task.task27.task2712.kitchen;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
 public enum Dish {
-        FISH, STEAK, SOUP, JUICE, WATER;
+    FISH,
+    STEAK,
+    SOUP,
+    JUICE,
+    WATER;
 
-    public static String allDishesToString(){
-        ArrayList<Dish> list = new ArrayList<>();
-        Collections.addAll(list, values());
-        StringBuilder sb = new StringBuilder();
+    public static String allDishesToString() {
+        String result = "";
 
-        for (Dish d : list) {
-            sb.append(d.toString()).append(" ");
+        for (Dish dish : Dish.values()) {
+            if ("".equals(result)) {
+                result += dish.name();
+            } else {
+                result += ", " + dish.name();
+            }
         }
-        return sb.toString().trim();
+        return result;
     }
 }

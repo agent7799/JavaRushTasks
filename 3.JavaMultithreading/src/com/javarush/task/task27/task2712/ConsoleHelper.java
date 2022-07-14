@@ -21,21 +21,19 @@ public class ConsoleHelper {
     }
 
     public static List<Dish> getAllDishesForOrder() throws IOException {
-        ConsoleHelper.writeMessage("Список доступных блюд: " + Dish.allDishesToString());
-        ConsoleHelper.writeMessage("Выберите блюдо или введите \"exit\" для выхода:");
+        ConsoleHelper.writeMessage("Выберите блюдо из списка: \n" + Dish.allDishesToString() +  "\nили введите \"exit\" для выхода:");
         List<Dish> selectedDishes = new ArrayList<>();
-        String dish;
-        while (!(dish = readString()).equalsIgnoreCase("exit")) {
+        
+        while (true) {
+            String dishName = ConsoleHelper.readString().trim();
+            if("exit".equalsIgnoreCase(dishName)){
+                break;
+            }
             try {
-                for (String s : Dish.allDishesToString().split(" ")) {
-                    //System.out.println("s = " + s + " ,dish = " + dish);
-                    if (s.equalsIgnoreCase(dish)) {
-                        selectedDishes.add(Dish.valueOf(s));
-                        //System.out.println(s + " added");
-                        break;
-                    }
-                }
-            } catch (IllegalArgumentException e) {
+                Dish dish = Dish.valueOf(dishName.toUpperCase());
+                        selectedDishes.add(dish);
+                        System.out.println(dish + " added to order");
+                }catch (IllegalArgumentException e) {
                 ConsoleHelper.writeMessage("Такого блюда нет, повторите выбор или введите \"exit\" для выхода:");
             }
         }
