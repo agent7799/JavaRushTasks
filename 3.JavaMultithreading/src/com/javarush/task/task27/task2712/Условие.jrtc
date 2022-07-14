@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 taskKey="com.javarush.task.task27.task2712.big04"\n\nРесторан(4)
 
 Что мы имеем? Повар приготовил блюда, пора их уносить, а официант не знает об этом.
@@ -103,6 +104,9 @@ Tablet{number=5}
 
 
 Ресторан(4)
+=======
+taskKey="com.javarush.task.task27.task2712.big01"\n\nРесторан(1)
+>>>>>>> JavaRushTasks/master
 
 Давай напишем программу для автоматизации работы в ресторане.
 
@@ -156,4 +160,17 @@ public static String allDishesToString(), который сформирует с
 Пример: &quot;FISH, STEAK, SOUP, JUICE, WATER&quot;. Формируй строку динамически.
 
 
+<<<<<<< HEAD
+=======
+Требования:
+1.	В классе Restaurant должен быть создан метод public static void main(String[] args).
+2.	В классе Tablet должно быть создано поле private final int number.
+3.	Конструктор класса Tablet должен принимать 1 параметр типа int и инициализировать поле number.
+4.	В пакете kitchen должен быть создан enum Dish с элементами FISH, STEAK, SOUP, JUICE, WATER.
+5.	В Dish должен быть создан статический метод allDishesToString, динамически формирующий строку из всех блюд.
+6.	В пакете kitchen должен быть создан класс Order, содержащий в себе список блюд(dishes), а также планшет(tablet).
+7.	Конструктор класса Order должен принимать один параметр типа Tablet и инициализировать поле tablet.
+8.	В классе Tablet должен существовать метод public void createOrder().
+
+>>>>>>> JavaRushTasks/master
 
