@@ -13,7 +13,7 @@ public class Cook extends Observable implements Observer {
     }
     
     @Override
-    public void update(Observable tablet, Object order) {
+    public void update(Observable o, Object order) {
         ConsoleHelper.writeMessage("Start cooking - " + order);
         setChanged();
         notifyObservers(order);

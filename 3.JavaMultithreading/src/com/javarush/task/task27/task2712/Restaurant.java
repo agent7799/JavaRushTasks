@@ -12,6 +12,8 @@ public class Restaurant {
 
 
         Tablet tablet = new Tablet(1);
+        tablet.addObserver(new Cook("Amigo"));
+
         Cook cook = new Cook("Amigo");
         tablet.addObserver(cook);
 

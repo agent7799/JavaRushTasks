@@ -28,10 +28,22 @@ public class Order {
                 result += ", " + dishes.get(i).name();
             }
             result += "] of " + tablet;
+            result += ", cooking time " + getTotalCookingTime() + "min";
             return result;
         }
     }
 
+    public boolean isEmpty(){
+        return (dishes.size() == 0);
+    }
+
+    public int getTotalCookingTime(){
+        int totalCookingTime = 0;
+        for (Dish d : dishes) {
+            totalCookingTime += d.getDuration();
+        }
+        return totalCookingTime;
+    }
 
 }
 
