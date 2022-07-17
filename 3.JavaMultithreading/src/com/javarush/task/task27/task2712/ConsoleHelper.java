@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConsoleHelper {
-
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public static void writeMessage(String message) {
