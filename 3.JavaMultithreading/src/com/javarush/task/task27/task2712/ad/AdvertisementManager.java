@@ -26,12 +26,17 @@ public class AdvertisementManager  {
         }
         if (storage.list().isEmpty()) {
             throw new NoVideoAvailableException();
+
         } else {
-            Collections.sort(availableVideos, (o1, o2) -> (int) ((o1.getAmountPerOneDisplaying()) - o2.getAmountPerOneDisplaying()));
+            Collections.sort(availableVideos, (o1, o2) -> (int) ((o2.getAmountPerOneDisplaying()) - o1.getAmountPerOneDisplaying()));
             for (Advertisement a : availableVideos) {
-                ConsoleHelper.writeMessage(String.format("%s is displaying... %d, %d",
-                        a.getName(), a.getDuration(), a.getAmountPerOneDisplaying()));
+                ConsoleHelper.writeMessage(String.format("%s is displaying... %d, %d", a.getName(), a.getDuration(), a.getAmountPerOneDisplaying()));
+
             }
+
+
+
+
         }
 
 
