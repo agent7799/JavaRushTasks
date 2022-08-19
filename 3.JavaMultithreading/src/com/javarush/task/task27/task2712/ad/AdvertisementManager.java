@@ -14,7 +14,6 @@ public class AdvertisementManager {
     }
 
     public void processVideos(){
-
         this.totalTimeSecondsLeft = Integer.MAX_VALUE;
         obtainOptimalVideoSet(new ArrayList<>(), timeSeconds, 0L);
         displayAdvertisement();
@@ -27,9 +26,24 @@ public class AdvertisementManager {
     private void obtainOptimalVideoSet(List<Advertisement> totalList, int currentTimeSecondsLeft, long currentAmount) {
         if (currentTimeSecondsLeft < 0) {
             return;
-        } else if (currentAmount > maxAmount
-                || currentAmount == maxAmount && (totalTimeSecondsLeft > currentTimeSecondsLeft
-                || totalTimeSecondsLeft == currentTimeSecondsLeft && totalList.size() < optimalVideoSet.size())) {
+
+        } else if (
+            //если текущая стоимость больше максимальной
+                currentAmount > maxAmount
+
+                // или равна макимальной
+                || currentAmount == maxAmount &&
+
+                        //и оставшееся время totalTimeSecondsLeft больше времени приготовления заказа
+                        (totalTimeSecondsLeft > currentTimeSecondsLeft
+
+                                // или оставшееся время равно
+                                || totalTimeSecondsLeft == currentTimeSecondsLeft
+
+                                // и количество роликов меньше оптимального
+                                && totalList.size() < optimalVideoSet.size())) {
+
+            //то (оптимальные) поля принимают текущие значения
             this.totalTimeSecondsLeft = currentTimeSecondsLeft;
             this.optimalVideoSet = totalList;
             this.maxAmount = currentAmount;
@@ -37,13 +51,15 @@ public class AdvertisementManager {
                 return;
             }
         }
-
+        //получаем список актуальных роликов
         ArrayList<Advertisement> tmp = getActualAdvertisements();
         tmp.removeAll(totalList);
         for (Advertisement ad : tmp) {
             if (!ad.isActive()) continue;
             ArrayList<Advertisement> currentList = new ArrayList<>(totalList);
             currentList.add(ad);
+
+            //рекурсия
             obtainOptimalVideoSet(currentList, currentTimeSecondsLeft - ad.getDuration(), currentAmount + ad.getAmountPerOneDisplaying());
         }
     }
