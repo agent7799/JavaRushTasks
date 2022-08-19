@@ -10,7 +10,6 @@ public class Order {
     private final Tablet tablet;
     protected List<Dish> dishes;
 
-
     public Order(Tablet tablet) throws IOException {
         this.tablet = tablet;
         this.dishes = ConsoleHelper.getAllDishesForOrder();
@@ -19,22 +18,20 @@ public class Order {
 
     @Override
     public String toString() {
-        String result = "";
-        if (dishes.size() == 0) {
-            return result;
-        } else {
-            result += "Your order: [" + dishes.get(0);
-            for (int i = 1; i < dishes.size(); i++) {           // !!  from i = 1 !!
-                result += ", " + dishes.get(i).name();
-            }
-            result += "] of " + tablet;
-            result += ", cooking time " + getTotalCookingTime() + "min";
-            return result;
+        StringBuilder result = new StringBuilder();
+        if (dishes.size() == 0) return result.toString();
+        result.append("Your order: [" + dishes.get(0));
+
+        for (int i = 1; i < dishes.size(); i++) {
+            result.append(", " + dishes.get(i).name());
         }
+        result.append("] of " + tablet);
+        result.append(", cooking time " + getTotalCookingTime() + "min");
+        return result.toString();
     }
 
-    public boolean isEmpty(){
-        return (dishes.size() == 0);
+    public boolean isEmpty() {
+        return dishes.isEmpty();
     }
 
     public int getTotalCookingTime(){
@@ -44,6 +41,4 @@ public class Order {
         }
         return totalCookingTime;
     }
-
 }
-

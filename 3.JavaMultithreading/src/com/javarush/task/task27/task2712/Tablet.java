@@ -17,27 +17,24 @@ public class Tablet extends Observable {
         this.number = number;
     }
 
-    public Order createOrder(){
+    public Order createOrder() {
         Order order = null;
         try {
             order = new Order(this);
             if (!order.isEmpty()){
                 AdvertisementManager manager = new AdvertisementManager(order.getTotalCookingTime()*60);
-                try {
-                    manager.processVideos();
-                } catch (NoVideoAvailableException e) {
-                    logger.log(Level.INFO, "No video is available for the order " + order);
-                }
+                manager.processVideos();
                 setChanged();
                 notifyObservers(order);
             }
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Console is unavailable.");
+        } catch (NoVideoAvailableException nve) {
+            logger.log(Level.INFO, "No video is available for the order " + order);
         }
         return order;
     }
 
-    @Override
     public String toString() {
         return "Tablet{" +
                 "number=" + number +

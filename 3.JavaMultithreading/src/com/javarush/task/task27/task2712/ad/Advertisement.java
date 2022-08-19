@@ -1,8 +1,9 @@
 package com.javarush.task.task27.task2712.ad;
 
 public class Advertisement {
-
+    //видео
     private Object content;
+
     private String name;
 
     //начальная сумма, стоимость рекламы в копейках. Используем long, чтобы избежать проблем с округлением
@@ -40,12 +41,14 @@ public class Advertisement {
         return amountPerOneDisplaying;
     }
 
-    public void revalidate(){
-        if (hits <= 0 ) {
+    public void revalidate() {
+        if (hits == 0) {
             throw new UnsupportedOperationException();
-        }else {
-            hits--;
         }
+        hits--;
     }
 
+    public boolean isActive() {
+        return hits > 0;
+    }
 }

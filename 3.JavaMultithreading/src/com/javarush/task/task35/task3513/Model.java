@@ -6,10 +6,15 @@ public class Model {
 
     public Model() {
        gameTiles = new Tile[FIELD_WIDTH][FIELD_WIDTH];
-        for (int y = 0; y < FIELD_WIDTH; y++) {
-            for (int x = 0; x < FIELD_WIDTH; x++) {
-                gameTiles[y][x] = new Tile();
+        for (int x = 0; x < FIELD_WIDTH; x++) {
+            for (int y = 0; y < FIELD_WIDTH; y++) {
+                gameTiles[x][y] = new Tile();
             }
         }
     }
+
+    private void addTile(){
+
+    }
+
 }

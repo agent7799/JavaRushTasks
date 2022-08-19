@@ -20,9 +20,8 @@ public class ConsoleHelper {
     }
 
     public static List<Dish> getAllDishesForOrder() throws IOException {
-        ConsoleHelper.writeMessage("Выберите блюдо из списка: \n" + Dish.allDishesToString() +  "\nили введите \"exit\" для выхода:");
+        ConsoleHelper.writeMessage("Выберите блюдо из списка: \n" + Dish.allDishesToString() +  "\nили введите \"exit\" для завершения ввода заказа:");
         List<Dish> selectedDishes = new ArrayList<>();
-        
         while (true) {
             String dishName = ConsoleHelper.readString().trim();
             if("exit".equalsIgnoreCase(dishName)){
