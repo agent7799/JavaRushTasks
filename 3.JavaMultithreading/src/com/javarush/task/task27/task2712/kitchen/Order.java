@@ -16,18 +16,26 @@ public class Order {
         ConsoleHelper.writeMessage(toString());
     }
 
+    public List<Dish> getDishes() {
+        return dishes;
+    }
+
+    public Tablet getTablet() {
+        return tablet;
+    }
+
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder();
-        if (dishes.size() == 0) return result.toString();
-        result.append("Your order: [" + dishes.get(0));
+        StringBuilder order = new StringBuilder();
+        if (dishes.size() == 0) return order.toString();
+        order.append("Your order: [" + dishes.get(0));
 
         for (int i = 1; i < dishes.size(); i++) {
-            result.append(", " + dishes.get(i).name());
+            order.append(", " + dishes.get(i).name());
         }
-        result.append("] of " + tablet);
-        result.append(", cooking time " + getTotalCookingTime() + "min");
-        return result.toString();
+        order.append("] of " + tablet);
+        order.append(", cooking time " + getTotalCookingTime() + "min");
+        return order.toString();
     }
 
     public boolean isEmpty() {

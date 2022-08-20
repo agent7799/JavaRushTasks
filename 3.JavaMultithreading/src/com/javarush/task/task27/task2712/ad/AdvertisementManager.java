@@ -1,5 +1,9 @@
 package com.javarush.task.task27.task2712.ad;
 
+import com.javarush.task.task27.task2712.statistic.StatisticManager;
+import com.javarush.task.task27.task2712.statistic.event.NoAvailableVideoEventDataRow;
+import com.javarush.task.task27.task2712.statistic.event.VideoSelectedEventDataRow;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +18,6 @@ public class AdvertisementManager {
     }
 
     public void processVideos(){
-
         this.totalTimeSecondsLeft = Integer.MAX_VALUE;
         obtainOptimalVideoSet(new ArrayList<>(), timeSeconds, 0L);
         displayAdvertisement();
@@ -52,6 +55,7 @@ public class AdvertisementManager {
     //показываем ролики из оптимального набора
     private void displayAdvertisement() {
         if (optimalVideoSet == null || optimalVideoSet.isEmpty()) {
+            StatisticManager.getInstance().register(new NoAvailableVideoEventDataRow(totalTimeSecondsLeft));
             throw new NoVideoAvailableException();
         }
 
@@ -61,11 +65,16 @@ public class AdvertisementManager {
             return (int) (l != 0 ? l : o2.getDuration() - o1.getDuration());
         });
 
+        //регистрация события показа в статистике
+        StatisticManager.getInstance().register(new VideoSelectedEventDataRow(optimalVideoSet, maxAmount, totalTimeSecondsLeft));
+
+
         //показ и обновление статуса
         for (Advertisement ad : optimalVideoSet) {
             displayInPlayer(ad);
             ad.revalidate();
         }
+
     }
 
     //показ ролика
