@@ -5,8 +5,7 @@ import com.javarush.task.task27.task2712.kitchen.Dish;
 import java.util.Date;
 import java.util.List;
 
-public class CookedOrderEventDataRow implements EventDataRow{
-
+public class CookedOrderEventDataRow implements EventDataRow {
     private String tabletName;
     private String cookName;
     private int cookingTimeSeconds;
@@ -34,5 +33,9 @@ public class CookedOrderEventDataRow implements EventDataRow{
     @Override
     public int getTime() {
         return cookingTimeSeconds;
+    }
+
+    public String getCookName() {
+        return cookName;
     }
 }

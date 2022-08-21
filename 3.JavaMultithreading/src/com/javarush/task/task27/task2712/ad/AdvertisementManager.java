@@ -10,21 +10,24 @@ import java.util.List;
 public class AdvertisementManager {
     private final AdvertisementStorage storage = AdvertisementStorage.getInstance();
     private int timeSeconds;
-    private List<Advertisement> optimalVideoSet;
-
 
     public AdvertisementManager(int timeSeconds) {
         this.timeSeconds = timeSeconds;
     }
 
-    public void processVideos(){
+    public void processVideos() {
         this.totalTimeSecondsLeft = Integer.MAX_VALUE;
-        obtainOptimalVideoSet(new ArrayList<>(), timeSeconds, 0L);
+        obtainOptimalVideoSet(new ArrayList<Advertisement>(), timeSeconds, 0l);
+        //регистрация события показа в статистике
+        VideoSelectedEventDataRow row = new VideoSelectedEventDataRow(optimalVideoSet, maxAmount, timeSeconds - totalTimeSecondsLeft);
+        StatisticManager.getInstance().register(row);
+
         displayAdvertisement();
     }
 
-    //recursion
+    //recurse
     private long maxAmount;
+    private List<Advertisement> optimalVideoSet;
     private int totalTimeSecondsLeft;
 
     private void obtainOptimalVideoSet(List<Advertisement> totalList, int currentTimeSecondsLeft, long currentAmount) {
@@ -51,9 +54,20 @@ public class AdvertisementManager {
         }
     }
 
+    //получаем список активных роликов
+    private ArrayList<Advertisement> getActualAdvertisements() {
+        ArrayList<Advertisement> advertisements = new ArrayList<>();
+        for (Advertisement ad : storage.list()) {
+            if (ad.isActive()) {
+                advertisements.add(ad);
+            }
+        }
+        return advertisements;
+    }
 
     //показываем ролики из оптимального набора
     private void displayAdvertisement() {
+        //TODO displaying
         if (optimalVideoSet == null || optimalVideoSet.isEmpty()) {
             StatisticManager.getInstance().register(new NoAvailableVideoEventDataRow(totalTimeSecondsLeft));
             throw new NoVideoAvailableException();
@@ -65,32 +79,15 @@ public class AdvertisementManager {
             return (int) (l != 0 ? l : o2.getDuration() - o1.getDuration());
         });
 
-        //регистрация события показа в статистике
-        StatisticManager.getInstance().register(new VideoSelectedEventDataRow(optimalVideoSet, maxAmount, totalTimeSecondsLeft));
-
-
-        //показ и обновление статуса
         for (Advertisement ad : optimalVideoSet) {
             displayInPlayer(ad);
             ad.revalidate();
         }
-
     }
 
     //показ ролика
     private void displayInPlayer(Advertisement advertisement) {
         System.out.println(advertisement.getName() + " is displaying... " + advertisement.getAmountPerOneDisplaying() +
                 ", " + (1000 * advertisement.getAmountPerOneDisplaying() / advertisement.getDuration()));
-    }
-
-    //получаем список активных роликов
-    private ArrayList<Advertisement> getActualAdvertisements() {
-        ArrayList<Advertisement> advertisements = new ArrayList<>();
-        for (Advertisement ad : storage.list()) {
-            if (ad.isActive()) {
-                advertisements.add(ad);
-            }
-        }
-        return advertisements;
     }
 }
