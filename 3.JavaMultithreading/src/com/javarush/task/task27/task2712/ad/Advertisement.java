@@ -17,6 +17,10 @@ public class Advertisement {
 
     private long amountPerOneDisplaying;
 
+    public int getHits() {
+        return hits;
+    }
+
     public Advertisement(Object content, String name, long initialAmount, int hits, int duration) {
         this.content = content;
         this.name = name;
